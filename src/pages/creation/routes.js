@@ -6,6 +6,7 @@ angular.module('pageCreation')
 		templateUrl: 'pages/creation/creation.html',
 		controllerAs: '$ctrl',
 		controller() {
+			angular.element('[ng-view]').attr('ng-view', 'pageCreation')
 		},
 	})
 }])

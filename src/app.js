@@ -2,11 +2,14 @@
 
 angular.module('Libris Sanctis', [
 	'ngRoute',
+	'pageCreation',
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-	$locationProvider.html5Mode(true)
 	$routeProvider.when('/', {
 		templateUrl: 'pages/home.html',
+		controller() {
+			angular.element('[ng-view]').attr('ng-view', 'pageHome')
+		},
 	})
 	.otherwise({redirectTo: '/'})
 }])
