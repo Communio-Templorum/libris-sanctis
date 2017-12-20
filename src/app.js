@@ -3,6 +3,7 @@
 angular.module('Libris Sanctis', [
 	'ngRoute',
 	'pageCreation',
+	'pageRevelations',
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	$routeProvider.when('/', {
