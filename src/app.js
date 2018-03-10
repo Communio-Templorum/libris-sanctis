@@ -1,9 +1,6 @@
-'use strict';
+/* app.json */
 
-angular.module('Libris Sanctis', [
-	'ngRoute',
-	'pageCreation',
-])
+angular.module('Libris Sanctis', modules)
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	$routeProvider.when('/', {
 		templateUrl: 'pages/home.html',
