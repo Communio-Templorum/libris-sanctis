@@ -1,0 +1,17 @@
+[itemscope][itemtype~='http://schema.org/Book'] {
+	counter-reset: chapter;
+
+	section {
+		&::before {
+			display: block;
+			content: 'Chapter ' counter(chapter);
+			counter-increment: chapter;
+			font-size: 1.05em;
+			font-weight: bold;
+		}
+
+		aside[lang] {
+			display: none;
+		}
+	}
+}
