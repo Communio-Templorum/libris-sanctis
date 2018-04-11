@@ -1,0 +1,20 @@
+ruby {
+	rtc:lang(en),
+	rt:lang(grc),
+	rt:lang(en),
+	rt:lang(la) {
+		display: inline;
+		font-size: 0.8em;
+		color: grey;
+
+		&::before {
+			display: inline;
+			content: ' (';
+		}
+
+		&::after {
+			display: inline;
+			content: ') ';
+		}
+	}
+}
