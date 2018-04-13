@@ -32,6 +32,8 @@ ruby {
 	}
 
 	@supports (display: contents) {
-		display: contents;
+		&:not(:land(sux)) {
+			display: contents;
+		}
 	}
 }
