@@ -1,4 +1,5 @@
 ruby {
+	&:lang(en) > rt,
 	rtc:lang(en),
 	rt:lang(grc),
 	rt:lang(en),
@@ -16,5 +17,21 @@ ruby {
 			display: inline;
 			content: ') ';
 		}
+	}
+
+	&:lang(en) > rtc:lang(grc),
+	&:lang(en) > rtc:lang(la) {
+		display: block;
+		font-size: 0.8em;
+		color: grey;
+		text-align: right;
+	}
+
+	@supports (display: inline ruby) {
+		display: inline ruby;
+	}
+
+	@supports (display: contents) {
+		display: contents;
 	}
 }
