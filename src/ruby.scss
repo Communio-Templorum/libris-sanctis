@@ -4,11 +4,7 @@ ruby {
 		display: contents;
 	}
 
-	&:lang(en) > rt,
-	> rtc:lang(en),
-	> rt:lang(grc),
-	> rt:lang(en),
-	> rt:lang(la) {
+	&:lang(en) > rt {
 		display: inline;
 		font-size: 0.8em;
 		color: grey;
@@ -34,5 +30,10 @@ ruby {
 			color: grey;
 			text-align: right;
 		}
+	}
+
+	ruby ruby > rt {
+		display: inline;
+		vertical-align: super;
 	}
 }
