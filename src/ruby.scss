@@ -1,9 +1,14 @@
 ruby {
+	:not(ol) > &:lang(en) {
+		display: inline;
+		display: contents;
+	}
+
 	&:lang(en) > rt,
-	rtc:lang(en),
-	rt:lang(grc),
-	rt:lang(en),
-	rt:lang(la) {
+	> rtc:lang(en),
+	> rt:lang(grc),
+	> rt:lang(en),
+	> rt:lang(la) {
 		display: inline;
 		font-size: 0.8em;
 		color: grey;
@@ -19,21 +24,15 @@ ruby {
 		}
 	}
 
-	&:lang(en) > rtc:lang(grc),
-	&:lang(en) > rtc:lang(la) {
-		display: block;
-		font-size: 0.8em;
-		color: grey;
-		text-align: right;
-	}
+	ol > & {
+		display: list-item;
 
-	@supports (display: inline ruby) {
-		display: inline ruby;
-	}
-
-	@supports (display: contents) {
-		&:not(:land(sux)) {
-			display: contents;
+		&:lang(en) > rtc:lang(grc),
+		&:lang(en) > rtc:lang(la) {
+			display: block;
+			font-size: 0.8em;
+			color: grey;
+			text-align: right;
 		}
 	}
 }
