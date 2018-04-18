@@ -13,5 +13,50 @@
 		aside[lang] {
 			display: none;
 		}
+
+		dl {
+			float: right;
+			clear: right;
+			margin: 0.5em -0.5em 0.5em 0.5em;
+			padding: 0.5em;
+			border: 1px solid black;
+			border-right: 0 none;
+
+			dd {
+				vertical-align: middle;
+			}
+
+			dd::after {
+				display: inline;
+				font-size: 0.5em;
+				color: grey;
+				vertical-align: middle;
+				margin-left: 0.5em;
+			}
+
+			dd:lang(sux)::after {
+				content: '(Sumerian)';
+			}
+
+			dd:lang(akk)::after {
+				content: '(Akkadian)';
+			}
+
+			dd:lang(he)::after {
+				content: '(Hebrew)';
+			}
+
+			dd:lang(grc)::after {
+				content: '(Ancient Greek)';
+			}
+
+			dd:lang(la)::after {
+				content: '(Latin)';
+			}
+
+			dd:lang(ar)::after {
+				content: '(Arabic)';
+			}
+		}
 	}
 }
