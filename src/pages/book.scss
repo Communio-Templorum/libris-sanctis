@@ -42,6 +42,18 @@
 				content: '(Akkadian)';
 			}
 
+			dd:lang(uga)::after {
+				content: '(Ugaritic)';
+			}
+
+			dd:lang(phn)::after {
+				content: '(Phoenician)';
+			}
+
+			dd:lang(syc)::after {
+				content: '(Classic Syrian)';
+			}
+
 			dd:lang(he)::after {
 				content: '(Hebrew)';
 			}
