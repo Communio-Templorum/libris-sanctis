@@ -74,7 +74,6 @@ plugins = require('gulp-load-plugins')({
 	rename:{
 		'gulp-autoprefixer': 'prefixCSS',
 		'gulp-run-command': 'cli',
-		'gulp-html-lint': 'lintHTML',
 		'gulp-sass-lint': 'lintSass',
 		'gulp-htmlmin': 'compileHTML',
 		'gulp-eslint': 'lintES',
@@ -276,12 +275,12 @@ options = {
 'line-end-style': 'lf',
 'spec-char-escape': false, // buggy, no need to escape & in URL queries
 'table-req-caption': false,
-'table-req-header': false, // buggy, see https://github.com/htmllint/htmllint/issues/197
+'table-req-header': true,
 'tag-bans': [
 	'acronym','applet','basefont','big','blink','center','font','frame','frameset','isindex','noframes','marquee',
 	'style',
 ],
-'tag-close': true,
+'tag-close': false,
 'tag-name-lowercase': true,
 'tag-name-match': true,
 'tag-self-close': 'always',
@@ -405,6 +404,7 @@ options = {
 }
 
 plugins.named = require('vinyl-named')
+plugins.lintHTML = require('@yodasws/gulp-htmllint')
 
 function runTasks(task) {
 	const fileType = task.fileType || 'static'
