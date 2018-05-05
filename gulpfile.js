@@ -501,7 +501,8 @@ function runTasks(task) {
 	{
 		name: 'compile:html',
 		src: [
-			'./src/**/*.html',
+			'src/**/*.html',
+			'!src/txt/**/*.html',
 			'!**/includes/**/*.html'
 		],
 		tasks: [
@@ -531,6 +532,7 @@ function runTasks(task) {
 gulp.task('lint:html', () => {
 	return gulp.src([
 		'src/**/*.html',
+		'!src/txt/**/*.html',
 	])
 		.pipe(plugins.lintHTML(options.lintHTML))
 		.pipe(plugins.lintHTML.failOnError())
@@ -593,6 +595,41 @@ gulp.task('watch', () => {
 	gulp.watch('./src/**/*.{sa,sc,c}ss', gulp.series('compile:sass'))
 	gulp.watch('./src/**/*.html', gulp.series('compile:html'))
 	gulp.watch('./src/**/*.js', gulp.series('compile:js'))
+})
+
+gulp.task('transliterate', (done) => {
+	[
+		'cuneiform',
+	].forEach((script) => {
+		const json = JSON.parse(fs.readFileSync(`./src/txt/${script}.json`))
+		let stream = gulp.src([
+			`src/txt/${script}/**/*.html`,
+		])
+		if (Array.isArray(json.dictionary)) json.dictionary.forEach((d) => {
+			if (Array.isArray(d)) {
+				stream = stream.pipe(plugins.replaceString(d[0], d[1], {logs:true}))
+			} else if (d.pattern && d.replacement) {
+				d.logs = d.logs || true
+				stream = stream.pipe(plugins.replaceString(d))
+			}
+		})
+		if (Array.isArray(json.unicode)) json.unicode.splice(0, 1000)
+		if (Array.isArray(json.unicode)) json.unicode.forEach((d) => {
+			let pattern = d.pattern || d[0]
+			if (typeof pattern === 'string') {
+				pattern = pattern.replace(/-/g, '\-')
+				if (pattern.substr(-1) !== '>') pattern += '\\b'
+				pattern = new RegExp(`\\b${pattern}`, 'g')
+			}
+			const unicode = d.replacement || d[1]
+			d.logs = d.logs || true
+			stream = stream.pipe(plugins.replaceString(pattern, (dd) => {
+				return unicode
+			}, d))
+		})
+		stream.pipe(gulp.dest(path.join(options.dest, script)))
+	})
+	done()
 })
 
 gulp.task('serve', () => {
