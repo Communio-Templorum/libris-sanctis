@@ -430,7 +430,7 @@ function runTasks(task) {
 
 	// Run each task
 	if (tasks.length) for (let i=0, k=tasks.length; i<k; i++) {
-		if (['lintHTML', 'lintSass', 'lintES'].indexOf(tasks[i]) !== -1) continue;
+		if (['lintHTML', 'lintSass', 'lintES'].indexOf(tasks[i]) !== -1) continue
 		let option = options[tasks[i]] || {}
 		if (option[fileType]) option = option[fileType]
 		stream = stream.pipe(plugins[tasks[i]](option))
@@ -596,7 +596,7 @@ gulp.task('watch', () => {
 })
 
 gulp.task('serve', () => {
-	return gulp.src('./docs/')
+	return gulp.src(options.dest)
 		.pipe(plugins.webserver(options.webserver))
 })
 
