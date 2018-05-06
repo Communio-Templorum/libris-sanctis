@@ -1,4 +1,8 @@
 ruby {
+	&[hidden] {
+		display: none !important;
+	}
+
 	:not(ol) > &:lang(en) {
 		display: inline;
 		display: contents;
