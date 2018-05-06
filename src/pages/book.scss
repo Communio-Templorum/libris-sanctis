@@ -2,6 +2,8 @@
 	counter-reset: chapter;
 
 	section {
+		margin-bottom: 1em;
+
 		&::before {
 			display: block;
 			content: 'Chapter ' counter(chapter);
@@ -68,6 +70,10 @@
 
 			dd:lang(la)::after {
 				content: '(Latin)';
+			}
+
+			dd:lang(el)::after {
+				content: '(Greek)';
 			}
 
 			dd:lang(ar)::after {
