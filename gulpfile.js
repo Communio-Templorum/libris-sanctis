@@ -386,9 +386,6 @@ options = {
 		}
 	},
 	webpack:{
-		logs:{
-			enabled:false
-		},
 		output:{
 			filename:'[name].js'
 		},
@@ -404,6 +401,7 @@ options = {
 }
 
 plugins.named = require('vinyl-named')
+plugins.webpack = require('webpack-stream')
 plugins.lintHTML = require('@yodasws/gulp-htmllint')
 
 function runTasks(task) {
