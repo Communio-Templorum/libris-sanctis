@@ -611,20 +611,25 @@ gulp.task('transliterate', (done) => {
 				stream = stream.pipe(plugins.replaceString(d))
 			}
 		})
-		if (Array.isArray(json.unicode)) json.unicode.splice(0, 1000)
-		if (Array.isArray(json.unicode)) json.unicode.forEach((d) => {
-			let pattern = d.pattern || d[0]
-			if (typeof pattern === 'string') {
-				pattern = pattern.replace(/-/g, '\-')
-				if (pattern.substr(-1) !== '>') pattern += '\\b'
-				pattern = new RegExp(`\\b${pattern}`, 'g')
-			}
-			const unicode = d.replacement || d[1]
-			d.logs = d.logs || true
-			stream = stream.pipe(plugins.replaceString(pattern, (dd) => {
-				return unicode
-			}, d))
-		})
+		if (Array.isArray(json.unicode)) {
+			json.unicode.reverse()
+			json.unicode = json.unicode.slice(0, 500)
+			json.unicode.forEach((d) => {
+				let pattern = d.pattern || d[0]
+				// Don't replace numbers yet
+				if (pattern.match(/^[0-9,]+$/)) return
+				// Convert pattern to RegExp
+				if (typeof pattern === 'string') {
+					pattern = pattern.replace(/-/g, '\-')
+					pattern = pattern.replace(/[^\\]\w$/i, '$&\\b')
+					pattern = pattern.replace(/^\w/i, '\\b$&')
+					pattern = new RegExp(pattern, 'g')
+				}
+				const unicode = d.replacement || d[1]
+				d.logs = d.logs || true
+				stream = stream.pipe(plugins.replaceString(pattern, unicode, d))
+			})
+		}
 		stream.pipe(gulp.dest(path.join(options.dest, script)))
 	})
 	done()
