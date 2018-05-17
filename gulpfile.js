@@ -596,6 +596,16 @@ gulp.task('watch', () => {
 })
 
 gulp.task('transliterate', (done) => {
+	// Convert pattern to RegExp
+	const patternToRegExp = (pattern) => {
+		if (typeof pattern === 'string') {
+			pattern = pattern.replace(/-/g, '\-')
+			pattern = pattern.replace(/[^\\]\w$/i, '$&\\b')
+			pattern = pattern.replace(/^\w/i, '\\b$&')
+			pattern = new RegExp(pattern, 'g')
+		}
+		return pattern
+	}
 	[
 		'cuneiform',
 	].forEach((script) => {
@@ -603,28 +613,33 @@ gulp.task('transliterate', (done) => {
 		let stream = gulp.src([
 			`src/txt/${script}/**/*.html`,
 		])
-		if (Array.isArray(json.dictionary)) json.dictionary.forEach((d) => {
-			if (Array.isArray(d)) {
-				stream = stream.pipe(plugins.replaceString(d[0], d[1], {logs:true}))
-			} else if (d.pattern && d.replacement) {
-				d.logs = d.logs || true
-				stream = stream.pipe(plugins.replaceString(d))
-			}
-		})
+		if (Array.isArray(json.remove)) {
+			stream = stream.pipe(plugins.replaceString(new RegExp('(?:' + json.remove.join('|') + ')', 'g'), '', {logs:false}))
+		}
+		if (Array.isArray(json['special-chars'])) {
+			json['special-chars'].forEach((d) => {
+				stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:true}))
+			})
+		}
+		if (Array.isArray(json.dictionary)) {
+			json.dictionary.forEach((d) => {
+				if (Array.isArray(d)) {
+					stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:true}))
+				} else if (d.pattern && d.replacement) {
+					d.logs = d.logs || true
+					d.pattern = patternToRegExp(d.pattern)
+					stream = stream.pipe(plugins.replaceString(d))
+				}
+			})
+		}
 		if (Array.isArray(json.unicode)) {
 			json.unicode.reverse()
-			json.unicode = json.unicode.slice(0, 500)
+			json.unicode = json.unicode.slice(0, 620)
 			json.unicode.forEach((d) => {
 				let pattern = d.pattern || d[0]
 				// Don't replace numbers yet
 				if (pattern.match(/^[0-9,]+$/)) return
-				// Convert pattern to RegExp
-				if (typeof pattern === 'string') {
-					pattern = pattern.replace(/-/g, '\-')
-					pattern = pattern.replace(/[^\\]\w$/i, '$&\\b')
-					pattern = pattern.replace(/^\w/i, '\\b$&')
-					pattern = new RegExp(pattern, 'g')
-				}
+				pattern = patternToRegExp(pattern)
 				const unicode = d.replacement || d[1]
 				d.logs = d.logs || true
 				stream = stream.pipe(plugins.replaceString(pattern, unicode, d))
