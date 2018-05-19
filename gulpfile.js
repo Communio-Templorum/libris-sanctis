@@ -637,7 +637,7 @@ gulp.task('transliterate', (done) => {
 				d = d.pattern || d[0]
 				// Don't replace numbers yet
 				if (d.match(/^[0-9,]+( or [0-9,]+)?$/)) return false
-				if (d.match(/^(one|two|three|four|five|six|seven|eight|nine)\b/)) return false
+				if (d.match(/\b(one|two|three|four|five|six|seven|eight|nine)\b/)) return false
 				return true;
 			})
 			json.unicode = json.unicode.slice(0, 500)
