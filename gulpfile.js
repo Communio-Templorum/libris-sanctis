@@ -600,7 +600,7 @@ gulp.task('transliterate', (done) => {
 	const patternToRegExp = (pattern) => {
 		if (typeof pattern === 'string') {
 			pattern = pattern.replace(/-/g, '\-')
-			pattern = pattern.replace(/[^\\]\w$/i, '$&\\b')
+			pattern = pattern.replace(/(^|[^\\])\w$/i, '$&\\b')
 			pattern = pattern.replace(/^\w/i, '\\b$&')
 			pattern = new RegExp(pattern, 'g')
 		}
