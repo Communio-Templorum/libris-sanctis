@@ -633,13 +633,16 @@ gulp.task('transliterate', (done) => {
 			})
 		}
 		if (Array.isArray(json.unicode)) {
-			json.unicode.reverse()
-			json.unicode = json.unicode.slice(0, 620)
-			json.unicode.forEach((d) => {
-				let pattern = d.pattern || d[0]
+			json.unicode = json.unicode.reverse().filter((d) => {
+				d = d.pattern || d[0]
 				// Don't replace numbers yet
-				if (pattern.match(/^[0-9,]+$/)) return
-				pattern = patternToRegExp(pattern)
+				if (d.match(/^[0-9,]+( or [0-9,]+)?$/)) return false
+				if (d.match(/^(one|two|three|four|five|six|seven|eight|nine)\b/)) return false
+				return true;
+			})
+			json.unicode = json.unicode.slice(0, 500)
+			json.unicode.forEach((d) => {
+				const pattern = patternToRegExp(d.pattern || d[0])
 				const unicode = d.replacement || d[1]
 				d.logs = d.logs || true
 				stream = stream.pipe(plugins.replaceString(pattern, unicode, d))
