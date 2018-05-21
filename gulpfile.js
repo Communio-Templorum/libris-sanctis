@@ -621,6 +621,21 @@ gulp.task('transliterate', (done) => {
 				stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:true}))
 			})
 		}
+		// Break up compounds and search for constituent characters
+		// e.g., ed3-de3-a-ba => [ ed3, de3, a, ba ] => [ &#x12313;&#x1207a;, &#x12248;, &#x12000;, &#x12040; ]
+		if (Array.isArray(json.unicode)) {
+			stream = stream.pipe(plugins.replaceString(/[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+(?:-(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))+/gi, (p) => {
+				return p.split('-').map((p) => {
+					for (let d of json.unicode) {
+						const pattern = patternToRegExp(d.pattern || d[0])
+						if (pattern.test(p)) {
+							return d[1]
+						}
+					}
+					return p
+				}).join('')
+			}, {logs:true}))
+		}
 		if (Array.isArray(json.dictionary)) {
 			json.dictionary.forEach((d) => {
 				if (Array.isArray(d)) {
@@ -636,8 +651,8 @@ gulp.task('transliterate', (done) => {
 			json.unicode = json.unicode.reverse().filter((d) => {
 				d = d.pattern || d[0]
 				// Don't replace numbers yet
-				if (d.match(/^[0-9,]+( or [0-9,]+)?$/)) return false
-				if (d.match(/\b(one|two|three|four|five|six|seven|eight|nine)\b/)) return false
+				if (d.match(/^[0-9,]+$/)) return false
+				if (d.match(/\b(or|one|two|three|four|five|six|seven|eight|nine)\b/)) return false
 				return true;
 			})
 			json.unicode = json.unicode.slice(0, 500)
