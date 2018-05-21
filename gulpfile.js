@@ -609,24 +609,26 @@ gulp.task('transliterate', (done) => {
 	[
 		'cuneiform',
 	].forEach((script) => {
+		const logs = false
 		const json = JSON.parse(fs.readFileSync(`./src/txt/${script}.json`))
 		let stream = gulp.src([
 			`src/txt/${script}/**/*.html`,
 		])
 		if (Array.isArray(json.remove)) {
-			stream = stream.pipe(plugins.replaceString(new RegExp('(?:' + json.remove.join('|') + ')', 'g'), '', {logs:false}))
+			stream = stream.pipe(plugins.replaceString(new RegExp('(?:' + json.remove.join('|') + ')', 'g'), '', {logs:logs}))
 		}
 		if (Array.isArray(json['special-chars'])) {
 			json['special-chars'].forEach((d) => {
-				stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:true}))
+				stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:logs}))
 			})
 		}
+		// Transliterate special/peculiar words
 		if (Array.isArray(json.dictionary)) {
 			json.dictionary.forEach((d) => {
 				if (Array.isArray(d)) {
-					stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:true}))
+					stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:logs}))
 				} else if (d.pattern && d.replacement) {
-					d.logs = d.logs || true
+					d.logs = d.logs || logs
 					d.pattern = patternToRegExp(d.pattern)
 					stream = stream.pipe(plugins.replaceString(d))
 				}
@@ -635,8 +637,8 @@ gulp.task('transliterate', (done) => {
 		// Break up compounds and search for constituent characters
 		// e.g., ed3-de3-a-ba => [ ed3, de3, a, ba ] => [ &#x12313;&#x1207a;, &#x12248;, &#x12000;, &#x12040; ]
 		if (Array.isArray(json.unicode)) {
-			stream = stream.pipe(plugins.replaceString(/[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+(?:-(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))+/gi, (p) => {
-				return p.split('-').map((p) => {
+			stream = stream.pipe(plugins.replaceString(/[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+(?:-(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))+/gi, (word) => {
+				return word.split('-').map((p) => {
 					for (let d of json.unicode) {
 						const pattern = patternToRegExp(d.pattern || d[0])
 						if (pattern.test(p)) {
@@ -645,7 +647,7 @@ gulp.task('transliterate', (done) => {
 					}
 					return p
 				}).join('')
-			}, {logs:true}))
+			}, {logs:logs}))
 		}
 		if (Array.isArray(json.unicode)) {
 			json.unicode = json.unicode.reverse().filter((d) => {
@@ -659,11 +661,11 @@ gulp.task('transliterate', (done) => {
 			json.unicode.forEach((d) => {
 				const pattern = patternToRegExp(d.pattern || d[0])
 				const unicode = d.replacement || d[1]
-				d.logs = d.logs || true
+				d.logs = d.logs || logs
 				stream = stream.pipe(plugins.replaceString(pattern, unicode, d))
 			})
 		}
-		stream.pipe(gulp.dest(path.join(options.dest, script)))
+		stream.pipe(gulp.dest(path.join(options.dest, 'txt', script)))
 	})
 	done()
 })
