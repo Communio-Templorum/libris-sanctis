@@ -625,13 +625,11 @@ gulp.task('transliterate', (done) => {
 		// Transliterate special/peculiar words
 		if (Array.isArray(json.dictionary)) {
 			json.dictionary.forEach((d) => {
-				if (Array.isArray(d)) {
-					stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:logs}))
-				} else if (d.pattern && d.replacement) {
-					d.logs = d.logs || logs
-					d.pattern = patternToRegExp(d.pattern)
-					stream = stream.pipe(plugins.replaceString(d))
-				}
+				stream = stream.pipe(plugins.replaceString({
+					pattern: patternToRegExp('>' + (d.pattern || d[0]) + '\\s?<'),
+					replacement: '>' + (d.replacement || d[1]) + '<',
+					logs: d.logs || logs,
+				}))
 			})
 		}
 		if (Array.isArray(json.unicode)) {
