@@ -634,21 +634,6 @@ gulp.task('transliterate', (done) => {
 				}
 			})
 		}
-		// Break up compounds and search for constituent characters
-		// e.g., ed3-de3-a-ba => [ ed3, de3, a, ba ] => [ &#x12313;&#x1207a;, &#x12248;, &#x12000;, &#x12040; ]
-		if (Array.isArray(json.unicode)) {
-			stream = stream.pipe(plugins.replaceString(/[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+(?:-(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))+/gi, (word) => {
-				return word.split('-').map((p) => {
-					for (let d of json.unicode) {
-						const pattern = patternToRegExp(d.pattern || d[0])
-						if (pattern.test(p)) {
-							return d[1]
-						}
-					}
-					return p
-				}).join('')
-			}, {logs:logs}))
-		}
 		if (Array.isArray(json.unicode)) {
 			json.unicode = json.unicode.reverse().filter((d) => {
 				d = d.pattern || d[0]
@@ -657,13 +642,23 @@ gulp.task('transliterate', (done) => {
 				if (d.match(/\b(or|one|two|three|four|five|six|seven|eight|nine)\b/)) return false
 				return true;
 			})
-			json.unicode = json.unicode.slice(0, 500)
-			json.unicode.forEach((d) => {
-				const pattern = patternToRegExp(d.pattern || d[0])
-				const unicode = d.replacement || d[1]
-				d.logs = d.logs || logs
-				stream = stream.pipe(plugins.replaceString(pattern, unicode, d))
-			})
+			// Break up compounds and search for constituent characters
+			// e.g., ed3-de3-a-ba => [ ed3, de3, a, ba ] => [ &#x12313;&#x1207a;, &#x12248;, &#x12000;, &#x12040; ]
+			stream = stream.pipe(plugins.replaceString(/>[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+(?:-(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))*</gi, (word) => {
+				word = word.replace(/[<>]/g, '')
+				const r = word.split('-').map((p) => {
+					let sym
+					json.unicode.forEach((d) => {
+						if (sym) return
+						const pattern = patternToRegExp(d.pattern || d[0])
+						if (pattern.test(p)) {
+							sym = d[1]
+						}
+					})
+					return sym || p
+				}).join('')
+				return `>${r}<`
+			}, {logs:logs}))
 		}
 		stream.pipe(gulp.dest(path.join(options.dest, 'txt', script)))
 	})

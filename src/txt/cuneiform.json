@@ -1,6 +1,5 @@
 {
 	"remove":[
-		"<\/?span(?: (?:title|class)=\"[^\"]*\")?>",
 		"<\/?sub>"
 	],
 	"special-chars":[
