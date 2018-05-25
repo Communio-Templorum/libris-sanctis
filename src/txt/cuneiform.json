@@ -159,7 +159,7 @@
 		["DIN","&#x12077;"],
 		["DIN KASKAL U ''gunû'' DIŠ","&#x12078;"],
 		["\\b(DIŠ|NIGIDA)\\b","&#x12079;"],
-		["\\b(DU|RE6|GUB|ŠA4|de6)\\b","&#x1207A;"],
+		["\\b(DU|RE6|GUB|ŠA4|de6|ra2)\\b","&#x1207A;"],
 		["\\b(DU / DU|LAḪ4|RE7)\\b","&#x1207B;"],
 		["\\b(DU ''gunû''|GIR6\\b|SUḪUŠ\\b)","&#x1207C;"],
 		["\\b(DU ''šešig''|GIR5\\b|KAŠ4\\b)","&#x1207D;"],
