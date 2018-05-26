@@ -626,7 +626,7 @@ gulp.task('transliterate', (done) => {
 		if (Array.isArray(json.dictionary)) {
 			json.dictionary.forEach((d) => {
 				stream = stream.pipe(plugins.replaceString({
-					pattern: patternToRegExp('>' + (d.pattern || d[0]) + '\\s?<'),
+					pattern: patternToRegExp('>\\s?' + (d.pattern || d[0]) + '\\s?<'),
 					replacement: '>' + (d.replacement || d[1]) + '<',
 					logs: d.logs || logs,
 				}))
@@ -642,7 +642,7 @@ gulp.task('transliterate', (done) => {
 			})
 			// Break up compounds and search for constituent characters
 			// e.g., ed3-de3-a-ba => [ ed3, de3, a, ba ] => [ &#x12313;&#x1207a;, &#x12248;, &#x12000;, &#x12040; ]
-			stream = stream.pipe(plugins.replaceString(/>[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+(?:-(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))*\s*</gi, (word) => {
+			stream = stream.pipe(plugins.replaceString(/>\s*[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+(?:-(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))*\s*</gi, (word) => {
 				word = word.replace(/[< >]/g, '')
 				const r = word.split('-').map((p) => {
 					let sym
