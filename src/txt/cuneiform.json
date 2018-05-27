@@ -30,6 +30,7 @@
 	],
 	"dictionary":[
 		["Alulim","&#x12009;&#x121FB;&#x12146;"],
+		["\\b(Bad-tibira\\b|bad3-tibira&#x121A0;)","&#x120a6;&#x1207e;&#x12244;&#x121A0;"],
 		["en","&#x1202D;&#x12097;"],
 		["eridug&#x121A0;","&#x12263;&#x121A0;"],
 		["<sup>ĝiš</sup>tukul","&#x12111;&#x121AA;"],
