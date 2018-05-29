@@ -78,6 +78,7 @@ plugins = require('gulp-load-plugins')({
 		'gulp-htmlmin': 'compileHTML',
 		'gulp-eslint': 'lintES',
 		'gulp-babel': 'compileJS',
+		'gulp-jsdom': 'dom',
 		'gulp-order': 'sort',
 		'gulp-sass': 'compileSass',
 		'gulp-file': 'newFile',
@@ -657,6 +658,26 @@ gulp.task('transliterate', (done) => {
 				return `>${r}<`
 			}, {logs:logs}))
 		}
+		// Now to wrap our cuneiform in ruby
+		if (json.ruby) {
+			stream = stream.pipe(plugins.dom((document) => {
+				document.querySelectorAll(json.ruby.query).forEach((el) => {
+					const classes = el.getAttribute('class')
+					let html = ` <ruby lang="${json.ruby['@lang'] || 'en'}">${eval(json.ruby.rb)}`
+					const rt = [];
+					if (!Array.isArray(json.ruby.rt)) {
+						json.ruby.rt = [json.ruby.rt]
+					}
+					json.ruby.rt.forEach((rt) => {
+						html += `<rt lang="${rt['@lang'] || 'en'}">${eval(rt.eval)}`
+					})
+					html += `</ruby> `
+					el.outerHTML = html
+					// el.setAttribute('class', classes)
+				})
+			}))
+		}
+		// Output Results
 		stream.pipe(gulp.dest(path.join(options.dest, 'txt', script)))
 	})
 	done()

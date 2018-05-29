@@ -1103,5 +1103,20 @@
 		["vertical colon","&#x12471;"],
 		["diagonal colon","&#x12472;"],
 		["diagonal tricolon","&#x12473;"]
-	]
+	],
+	"ruby":{
+		"query":"span[title]",
+		"@lang":"sux",
+		"rb":"el.innerHTML",
+		"rt":[
+			{
+				"eval":"el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[0]",
+				"@lang":"sux-Latn"
+			},
+			{
+				"eval":"el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[1]",
+				"@lang":"en"
+			}
+		]
+	}
 }
