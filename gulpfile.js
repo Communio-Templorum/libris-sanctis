@@ -662,8 +662,8 @@ gulp.task('transliterate', (done) => {
 		if (json.ruby) {
 			stream = stream.pipe(plugins.dom((document) => {
 				document.querySelectorAll(json.ruby.query).forEach((el) => {
-					const classes = el.getAttribute('class')
-					let html = ` <ruby lang="${json.ruby['@lang'] || 'en'}">${eval(json.ruby.rb)}`
+					const classes = el.getAttribute('class') || ''
+					let html = ` <ruby class="${classes}" lang="${json.ruby['@lang'] || 'en'}">${eval(json.ruby.rb)}`
 					const rt = [];
 					if (!Array.isArray(json.ruby.rt)) {
 						json.ruby.rt = [json.ruby.rt]
@@ -673,7 +673,6 @@ gulp.task('transliterate', (done) => {
 					})
 					html += `</ruby> `
 					el.outerHTML = html
-					// el.setAttribute('class', classes)
 				})
 			}))
 		}

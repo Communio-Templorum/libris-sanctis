@@ -37,10 +37,12 @@
 		["(Eridu|eridug&#x121A0;)","&#x12263;&#x121A0;"],
 		["<sup>ĝiš</sup>tukul","&#x12111;&#x121AA;"],
 		["<sup>ĝiš</sup>tukul-bi","&#x12111;&#x121AA;&#x12049;"],
+		["(Kullassina-bel|kul2-la-si2-na-be-el)","&#x12122;&#x121B7;&#x1202D;&#x200D;&#x12410;&#x200D;&#x12038;&#x200D;/&#x200D;&#x12038;&#x200D;&#x1202D;&#x1223E;-be-&#x12096;"],
 		["mu-&lt;bi&gt;","&#x1222C;"],
 		["Nanniya","&#x1223E;&#x1202D;&#x1224C;&#x12140;"],
 		["(Šuruppag|šuruppag&#x121A0;)","&#x122e2;&#x121b3;&#x12292;&#x121A0;"],
-		["(Ubara-Tutu)","&#x1207a;&#x1207a;"],
+		["(Ubara-Tutu|Ubara-tutu|Ubaratutu)","&#x120AC;&#x1207a;&#x1207a;"],
+		["(Ĝušur|ĝušurx)","&#x12111;&#x120E1;"],
 		["(Zimbir|zimbir&#x121A0;)","&#x12313;&#x12112;&#x12263;&#x121A0;"]
 	],
 	"unicode":[
@@ -119,7 +121,7 @@
 		["(BALAG|DUB2)","&#x12046;"],
 		["BAR","&#x12047;"],
 		["BARA2","&#x12048;"],
-		["(BI|bi|be2)","&#x12049;"],
+		["(BI|bi|BE2|be2)","&#x12049;"],
 		["BI x A","&#x1204A;"],
 		["BI x GAR","&#x1204B;"],
 		["BI x IGI ''gunû''","&#x1204C;"],

@@ -14,7 +14,7 @@ h1 { color: black; display: inline; }
 header h2 { color: #666; display: inline; }
 header a { float: right; }
 header { border-bottom: 2px solid grey; }
-span.proper { color: green; }
+.proper { color: green; }
 main { counter-reset: column; }
 ol::before {
 	display: block;
@@ -23,8 +23,21 @@ ol::before {
 	counter-increment: column;
 	content: "Column " counter(column);
 }
-main li { font-size: 0.9rem; }
+main li { font-size: 1rem; }
 li[value="0"] { list-style: none; }
+
+ruby > rt:lang(en) {
+	display: inline;
+	font-size: 0.8em;
+}
+ruby > rt:lang(en)::before {
+	display: inline;
+	content: '(';
+}
+ruby > rt:lang(en)::after {
+	display: inline;
+	content: ')';
+}
 
 </style>
 </head>
@@ -40,23 +53,23 @@ li[value="0"] { list-style: none; }
 <ol>
 <li> <span title="nam-lugal (N) kingship">nam-lugal</span> <span title="an (N) heaven">an-ta</span> <span title="ed<sub>3</sub> (V) to go down or up">ed<sub>3</sub>-de<sub>3</sub>-a-ba</span> </li>
 <li> <span class="proper" title="eridug (N:SN) Eridug">eridug<sup>ki</sup> </span> <span title="nam-lugal (N) kingship">nam-lugal-la</span> </li>
-<li> <span class="proper" title="eridug (N:SN) Eridug">eridug<sup>ki</sup> </span> <span class="proper"> <span title="a<sub>2</sub>-lu-lim (N:RN) Alulim">a<sub>2</sub>-lu-lim</span> </span> <span title="lugal (N) king">lugal</span> </li>
+<li> <span class="proper" title="eridug (N:SN) Eridug">eridug<sup>ki</sup> </span> <span class="proper" title="a<sub>2</sub>-lu-lim (N:RN) Alulim">a<sub>2</sub>-lu-lim</span> <span title="lugal (N) king">lugal</span> </li>
 <li> <span title="mu (N) year">mu</span> <span title="28800 (NU:cardinal) 28800">28800</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
-<li> <span class="proper"> <span title="a<sub>2</sub>-lal<sub>3</sub>-&#x011D;ar (N:RN) Alal&#x011D;ar">a<sub>2</sub>-lal<sub>3</sub>-&#x011D;ar</span> </span> <span title="mu (N) year">mu</span> <span title="36000 (NU:cardinal) 36000">36000</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
+<li> <span class="proper" title="a<sub>2</sub>-lal<sub>3</sub>-&#x011D;ar (N:RN) Alal&#x011D;ar">a<sub>2</sub>-lal<sub>3</sub>-&#x011D;ar</span> <span title="mu (N) year">mu</span> <span title="36000 (NU:cardinal) 36000">36000</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
 <li> <span title="2 (NU:cardinal) 2">2</span> <span title="lugal (N) king">lugal</span> </li>
 <li> <span title="mu (N) year">mu-&lt;bi&gt;</span> <span title="64800 (NU:cardinal) 64800">64800</span> <span title="ak (V) to do">ib<sub>2</sub>-ak</span> </li>
 <li> <span class="proper" title="eridug (N:SN) Eridug">eridug<sup>ki</sup> </span> <span title="&#x0161;ub (V) to fall">ba-&#x0161;ub</span> </li>
-<li> <span title="nam-lugal (N) kingship">nam-lugal-bi</span> <span class="proper"> <span title="bad<sub>3</sub>-tibira (N:SN) Bad-tibira"><span>bad<sub>3</sub>-tibira<sup>ki</sup></span><span>&#x0161;e<sub>3</sub></span> </span> </span> </li>
+<li> <span title="nam-lugal (N) kingship">nam-lugal-bi</span> <span class="proper" title="bad<sub>3</sub>-tibira (N:SN) Bad-tibira"><span>bad<sub>3</sub>-tibira<sup>ki</sup></span><span>&#x0161;e<sub>3</sub></span> </span> </li>
 <li> <span title="de<sub>6</sub> (V) to carry">ba-de<sub>6</sub> </span> </li>
-<li> <span class="proper"> <span title="bad<sub>3</sub>-tibira (N:SN) Bad-tibira">bad<sub>3</sub>-tibira<sup>ki</sup> </span> </span> <span class="proper"> <span title="en-me-en-lu<sub>2</sub>-an-na (N:RN) En-men-lu-ana">en-me-en-lu<sub>2</sub>-an-na</span> </span> </li>
+<li> <span class="proper" title="bad<sub>3</sub>-tibira (N:SN) Bad-tibira">bad<sub>3</sub>-tibira<sup>ki</sup> </span> <span class="proper" title="en-me-en-lu<sub>2</sub>-an-na (N:RN) En-men-lu-ana">en-me-en-lu<sub>2</sub>-an-na</span> </li>
 <li> <span title="mu (N) year">mu</span> <span title="43200 (NU:cardinal) 43200">43200</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
 <li> <span class="proper" title="en-me-en-gal-an-na (N:RN) En-men-gal-ana">en-me-en-gal-an-na</span> </li>
 <li> <span title="mu (N) year">mu</span> <span title="28800 (NU:cardinal) 28800">28800</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
-<li> <span class="proper"> <span title="dumu-zid (N:RN) Dumuzid"> <sup>d</sup>dumu-zid</span> </span> <span title="sipad (N) shepherd">sipad</span> <span title="mu (N) year">mu</span> <span title="36000 (NU:cardinal) 36000">36000</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
+<li> <span class="proper" title="dumu-zid (N:RN) Dumuzid"> <sup>d</sup>dumu-zid</span> <span title="sipad (N) shepherd">sipad</span> <span title="mu (N) year">mu</span> <span title="36000 (NU:cardinal) 36000">36000</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
 <li> <span title="3 (NU:cardinal) 3">3</span> <span title="lugal (N) king">lugal</span> </li>
 <li> <span title="mu (N) year">mu-bi</span> <span title="108000 (NU:cardinal) 108000">108000</span> <span title="ak (V) to do">ib<sub>2</sub>-ak</span> </li>
 <li> <span class="proper"> <span title="bad<sub>3</sub>-tibira (N:SN) Bad-tibira">bad<sub>3</sub>-tibira<sup>ki</sup> </span> </span> <span title="&#x0161;ub (V) to fall">ba-&#x0161;ub-be<sub>2</sub>-en</span> </li>
-<li> <span title="nam-lugal (N) kingship">nam-lugal-bi</span> <span class="proper"> <span title="la-ra-ag (N:SN) Larag">la-ra-ag<sup>ki</sup>-&#x0161;e<sub>3</sub> </span> </span> <span title="de<sub>6</sub> (V) to carry">ba-de<sub>6</sub> </span> </li>
+<li> <span title="nam-lugal (N) kingship">nam-lugal-bi</span> <span class="proper" title="la-ra-ag (N:SN) Larag">la-ra-ag<sup>ki</sup>-&#x0161;e<sub>3</sub> </span> <span title="de<sub>6</sub> (V) to carry">ba-de<sub>6</sub> </span> </li>
 <li> <span class="proper" title="la-ra-ag (N:SN) Larag">la-ra-ag<sup>ki</sup> </span> <span class="proper" title="en-sipad-zid-an-na (N:RN) En-sipad-zid-ana">en-sipad-zid-an-na</span> </li>
 <li> <span title="mu (N) year">mu</span> <span title="28800 (NU:cardinal) 28800">28800</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
 <li> <span title="1 (NU:cardinal) 1">1</span> <span title="lugal (N) king">lugal</span> </li>
@@ -80,7 +93,7 @@ li[value="0"] { list-style: none; }
 <li> <span title="e&#x011D;er (N) back">e&#x011D;er</span> <span title="a-ma-ru (N) flood">a-ma-ru</span> <span title="ur<sub>3</sub> (V) to drag">ba-ur<sub>3</sub>-ra-ta</span> </li>
 <li> <span title="nam-lugal (N) kingship">nam-lugal</span> <span title="an (N) heaven">an-ta</span> <span title="ed<sub>3</sub> (V) to go down or up">ed<sub>3</sub>-de<sub>3</sub>-a-ba</span> </li>
 <li> <span class="proper"> <span title="ki&#x0161; (N:SN) Ki&#x0161;">ki&#x0161;<sup>ki</sup> </span> </span> <span title="nam-lugal (N) kingship">nam-lugal-la</span> </li>
-<li> <span class="proper"> <span title="ki&#x0161; (N:SN) Ki&#x0161;">ki&#x0161;<sup>ki</sup> </span> </span> <span class="proper"> <span title="&#x011D;u&#x0161;ur<sub>x</sub> (N:RN) &#x011C;u&#x0161;ur">&#x011D;u&#x0161;ur<sub>x</sub>(&#x011C;I&#x0160;.UR<sub>3</sub>)</span> </span> </li>
+<li> <span class="proper"> <span title="ki&#x0161; (N:SN) Ki&#x0161;">ki&#x0161;<sup>ki</sup> </span> </span> <span class="proper"> <span title="&#x011D;u&#x0161;ur<sub>x</sub> (N:RN) &#x011C;u&#x0161;ur">&#x011D;u&#x0161;ur<sub>x</sub></span> </span> </li>
 <li> <span title="lugal (N) king">lugal-am<sub>3</sub> </span> </li>
 <li> <span title="mu (N) year">mu</span> <span title="1200 (NU:cardinal) 1200">1200</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
 <li> <span class="proper"> <span title="kul<sub>2</sub>-la-si<sub>2</sub>-na-be-el (N:RN) Kullassina-bel">kul<sub>2</sub>-la-si<sub>2</sub>-na-be-el</span> </span> </li>
@@ -171,12 +184,12 @@ li[value="0"] { list-style: none; }
 <li> <span title="mu (N) year">mu</span> {<span title="100 (NU:cardinal) 100">100</span>} {(<span class="note">ms. TL has instead:</span>) <span title="110 (NU:cardinal) 110">110</span>} <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
 <li> <span title="&#x0161;u (N) hand">&#x0161;u</span> <span title="dili (AJ) single">dili</span> <span class="proper"> <span title="en-me-barag-ge<sub>4</sub>-e-si (N:RN) En-me-barage-si">en<sup>?</sup>-me-barag-ge<sub>4</sub>-e-si</span> </span> </li>
 <li> <span title="nam-ra (N) booty">nam-ra</span> /<span title="ak (V) to do">i<sub>3</sub> <sup>?</sup>\-ak<sup>?</sup> </span> </li>
-<li> <span class="proper"> <span title="gilgame&#x0161;<sub>2</sub> (N:DN) Gilgame&#x0161;"> <sup>d</sup>gilgame&#x0161;<sub>3</sub> </span> </span> </li>
+<li> <span class="proper"> <span title="gilgame&#x0161;<sub>2</sub> (N:DN) Gilgamesh"> <sup>d</sup>gilgame&#x0161;<sub>3</sub> </span> </span> </li>
 <li> <span title="ab-ba (N) father">ab-ba-ni</span> <span title="lil<sub>2</sub> (N) ghost">lil<sub>2</sub>-la<sub>2</sub> </span> </li>
 <li> <span title="en (N) lord">en</span> <span class="proper"> <span title="kul-aba (N:SN) Kulaba">kul-ab-ba-ke<sub>4</sub> </span> </span> </li>
 <li> <span title="mu (N) year">mu</span> <span title="126 (NU:cardinal) 126">126</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
 <li> <span class="proper" title="ur-nun-gal (N:RN) Ur-Nungal">ur-<sup>d</sup>nun-gal</span> </li>
-<li> <span title="dumu (N) child">dumu</span> <span class="proper"> <span title="gilgame&#x0161;<sub>2</sub> (N:DN) Gilgame&#x0161;"> <sup>d</sup>gilgame&#x0161;<sub>2</sub> </span> </span> </li>
+<li> <span title="dumu (N) child">dumu</span> <span class="proper"> <span title="gilgame&#x0161;<sub>2</sub> (N:DN) Gilgamesh"> <sup>d</sup>gilgame&#x0161;<sub>2</sub> </span> </span> </li>
 <li> <span title="mu (N) year">mu</span> <span title="30 (NU:cardinal) 30">30</span> <span title="ak (V) to do">i<sub>3</sub>-ak</span> </li>
 <li> <span class="proper"> <span title="u-dul<sub>3</sub>-kalam-ma (N:RN) Udul-kalama">u-dul<sub>3</sub>-kalam-ma</span> </span> </li>
 <li> <span title="dumu (N) child">dumu</span> {<span class="proper"> <span title="ur-nun-gal (N:RN) Ur-Nungal">ur-<sup>d</sup>nun-gal-ke<sub>4</sub> </span> </span>} {(<span class="note">ms. Su1 has instead:</span>) <span class="proper"> <span title="ur-lugal (N:RN) Ur-lugal">ur-lugal-ke<sub>4</sub> </span> </span>} </li>
