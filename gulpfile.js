@@ -643,7 +643,7 @@ gulp.task('transliterate', (done) => {
 			})
 			// Break up compounds and search for constituent characters
 			// e.g., ed3-de3-a-ba => [ ed3, de3, a, ba ] => [ &#x12313;&#x1207a;, &#x12248;, &#x12000;, &#x12040; ]
-			stream = stream.pipe(plugins.replaceString(/>\s*(&#x12[0-9a-f]{3};)?(?:|[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+)(?:&#x12[0-9a-f]{3};|-(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))*\s*</gi, (word) => {
+			stream = stream.pipe(plugins.replaceString(/>\s*(&#x12[0-9a-f]{3};)?(?:|[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+)(?:&#x12[0-9a-f]{3};|-(&#x12[0-9a-f]{3};)?(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))*\s*</gi, (word) => {
 				word = word.replace(/^>\s*|\s*<$/g, '')
 				const r = word.split(/-|(&#x12[0-9a-f]{3};)/i).map((p) => {
 					let sym
