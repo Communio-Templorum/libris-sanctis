@@ -78,6 +78,7 @@ plugins = require('gulp-load-plugins')({
 		'gulp-htmlmin': 'compileHTML',
 		'gulp-eslint': 'lintES',
 		'gulp-babel': 'compileJS',
+		'gulp-jsdom': 'dom',
 		'gulp-order': 'sort',
 		'gulp-sass': 'compileSass',
 		'gulp-file': 'newFile',
@@ -499,7 +500,8 @@ function runTasks(task) {
 	{
 		name: 'compile:html',
 		src: [
-			'./src/**/*.html',
+			'src/**/*.html',
+			'!src/txt/**/*.html',
 			'!**/includes/**/*.html'
 		],
 		tasks: [
@@ -529,6 +531,7 @@ function runTasks(task) {
 gulp.task('lint:html', () => {
 	return gulp.src([
 		'src/**/*.html',
+		'!src/txt/**/*.html',
 	])
 		.pipe(plugins.lintHTML(options.lintHTML))
 		.pipe(plugins.lintHTML.failOnError())
@@ -591,6 +594,92 @@ gulp.task('watch', () => {
 	gulp.watch('./src/**/*.{sa,sc,c}ss', gulp.series('compile:sass'))
 	gulp.watch('./src/**/*.html', gulp.series('compile:html'))
 	gulp.watch('./src/**/*.js', gulp.series('compile:js'))
+})
+
+gulp.task('transliterate', (done) => {
+	// Convert pattern to RegExp
+	const patternToRegExp = (pattern) => {
+		if (typeof pattern === 'string') {
+			pattern = pattern.replace(/-/g, '\-')
+			pattern = pattern.replace(/(^|[^\\])\w$/i, '$&\\b')
+			pattern = pattern.replace(/^\w/i, '\\b$&')
+			pattern = new RegExp(pattern, 'g')
+		}
+		return pattern
+	}
+	[
+		'cuneiform',
+	].forEach((script) => {
+		const logs = false
+		const json = JSON.parse(fs.readFileSync(`./src/txt/${script}.json`))
+		let stream = gulp.src([
+			`src/txt/${script}/**/*.html`,
+		])
+		if (Array.isArray(json.remove)) {
+			stream = stream.pipe(plugins.replaceString(new RegExp('(?:' + json.remove.join('|') + ')', 'g'), '', {logs:logs}))
+		}
+		if (Array.isArray(json['special-chars'])) {
+			json['special-chars'].forEach((d) => {
+				stream = stream.pipe(plugins.replaceString(patternToRegExp(d[0]), d[1], {logs:logs}))
+			})
+		}
+		// Transliterate special/peculiar words
+		if (Array.isArray(json.dictionary)) {
+			json.dictionary.forEach((d) => {
+				stream = stream.pipe(plugins.replaceString({
+					pattern: patternToRegExp('>\\s?' + (d.pattern || d[0]) + '\\s?<'),
+					replacement: '>' + (d.replacement || d[1]) + '<',
+					logs: d.logs || logs,
+				}))
+			})
+		}
+		if (Array.isArray(json.unicode)) {
+			json.unicode = json.unicode.reverse().filter((d) => {
+				d = d.pattern || d[0]
+				// Don't replace numbers yet
+				if (d.match(/^[0-9,]+$/)) return false
+				if (d.match(/\b(or|one|two|three|four|five|six|seven|eight|nine)\b/)) return false
+				return true;
+			})
+			// Break up compounds and search for constituent characters
+			// e.g., ed3-de3-a-ba => [ ed3, de3, a, ba ] => [ &#x12313;&#x1207a;, &#x12248;, &#x12000;, &#x12040; ]
+			stream = stream.pipe(plugins.replaceString(/>\s*(&#x12[0-9a-f]{3};)?(?:|[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+)(?:&#x12[0-9a-f]{3};|-(&#x12[0-9a-f]{3};)?(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))*\s*</gi, (word) => {
+				word = word.replace(/^>\s*|\s*<$/g, '')
+				const r = word.split(/-|(&#x12[0-9a-f]{3};)/i).map((p) => {
+					let sym
+					json.unicode.forEach((d) => {
+						if (sym) return
+						if (new RegExp(`^${d.pattern || d[0]}$`).test(p)) {
+							sym = d.replacement || d[1]
+						}
+					})
+					return sym || p
+				}).join('')
+				return `>${r}<`
+			}, {logs:logs}))
+		}
+		// Now to wrap our cuneiform in ruby
+		if (json.ruby) {
+			stream = stream.pipe(plugins.dom((document) => {
+				document.querySelectorAll(json.ruby.query).forEach((el) => {
+					const classes = el.getAttribute('class') || ''
+					let html = ` <ruby class="${classes}" lang="${json.ruby['@lang'] || 'en'}">${eval(json.ruby.rb)}`
+					const rt = [];
+					if (!Array.isArray(json.ruby.rt)) {
+						json.ruby.rt = [json.ruby.rt]
+					}
+					json.ruby.rt.forEach((rt) => {
+						html += `<rt lang="${rt['@lang'] || 'en'}">${eval(rt.eval)}`
+					})
+					html += `</ruby> `
+					el.outerHTML = html
+				})
+			}))
+		}
+		// Output Results
+		stream.pipe(gulp.dest(path.join(options.dest, 'txt', script)))
+	})
+	done()
 })
 
 gulp.task('serve', () => {

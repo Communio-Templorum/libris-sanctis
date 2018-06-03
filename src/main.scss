@@ -17,7 +17,10 @@ body {
 	min-height: 100%;
 	background: white;
 
-	> * {
+	> header,
+	> nav,
+	> main,
+	> footer {
 		padding: 5px calc(5px * 2.5);
 	}
 }
