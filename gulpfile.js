@@ -658,6 +658,22 @@ gulp.task('transliterate', (done) => {
 				return `>${r}<`
 			}, {logs:logs}))
 		}
+		// Transliterate Number Codes
+		if (Array.isArray(json.numbers)) {
+			stream = stream.pipe(plugins.replaceString(/>NU:([^<]*)+</gi, (str, signs) => {
+				const r = signs.split(/-|(&#x12[0-9a-f]{3};)/i).map((s) => {
+					let sym
+					json.numbers.forEach((d) => {
+						if (sym) return
+						if (new RegExp(`^${d.pattern || d[0]}$`).test(s)) {
+							sym = d.replacement || d[1]
+						}
+					})
+					return sym || s
+				}).join('')
+				return `>${r}<`
+			}, {logs:logs}))
+		}
 		// Now to wrap our cuneiform in ruby
 		if (json.ruby) {
 			stream = stream.pipe(plugins.dom((document) => {
