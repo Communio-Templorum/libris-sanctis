@@ -1127,11 +1127,15 @@
 		"rb":"el.innerHTML",
 		"rt":[
 			{
-				"eval":"el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[0]",
+				"eval":"el.getAttribute('title').indexOf('(') > -1 ? el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[0] : ''",
 				"@lang":"sux-Latn"
 			},
 			{
-				"eval":"el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[1]",
+				"eval":"el.getAttribute('title').indexOf('(') > -1 ? el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[1] : ''",
+				"@lang":"en"
+			},
+			{
+				"eval":"el.getAttribute('title').indexOf('(') === -1 ? el.getAttribute('title') : ''",
 				"@lang":"en"
 			}
 		]

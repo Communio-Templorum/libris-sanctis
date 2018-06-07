@@ -669,7 +669,8 @@ gulp.task('transliterate', (done) => {
 						json.ruby.rt = [json.ruby.rt]
 					}
 					json.ruby.rt.forEach((rt) => {
-						html += `<rt lang="${rt['@lang'] || 'en'}">${eval(rt.eval)}`
+						const txt = eval(rt.eval)
+						if (txt && txt !== 'X' && txt !== '…') html += `<rt lang="${rt['@lang'] || 'en'}">${txt}`
 					})
 					html += `</ruby> `
 					el.outerHTML = html
