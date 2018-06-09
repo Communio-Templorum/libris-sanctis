@@ -643,9 +643,9 @@ gulp.task('transliterate', (done) => {
 			})
 			// Break up compounds and search for constituent characters
 			// e.g., ed3-de3-a-ba => [ ed3, de3, a, ba ] => [ &#x12313;&#x1207a;, &#x12248;, &#x12000;, &#x12040; ]
-			stream = stream.pipe(plugins.replaceString(/>\s*(&#x12[0-9a-f]{3};)?(?:|[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+)(?:&#x12[0-9a-f]{3};|-(&#x12[0-9a-f]{3};)?(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû]+))*\s*</gi, (word) => {
+			stream = stream.pipe(plugins.replaceString(/>\s*(&#x12[0-9a-f]{3};)?(?:|[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû×]+)(?:&#x12[0-9a-f]{3};|[-\.](&#x12[0-9a-f]{3};)?(?:[a-z0-9ÀàÁáÉéĜĝḪḫÍíŠšÙùÚúÛû×]+))*\s*</gi, (word) => {
 				word = word.replace(/^>\s*|\s*<$/g, '')
-				const r = word.split(/-|(&#x12[0-9a-f]{3};)/i).map((p) => {
+				const r = word.split(/[-\.]|(&#x12[0-9a-f]{3};)/i).map((p) => {
 					let sym
 					json.unicode.forEach((d) => {
 						if (sym) return
@@ -658,6 +658,26 @@ gulp.task('transliterate', (done) => {
 				return `>${r}<`
 			}, {logs:logs}))
 		}
+		// Transliterate Number Codes
+		if (Array.isArray(json.numbers)) {
+			stream = stream.pipe(plugins.replaceString(/>NU:([^<]*)+</gi, (str, signs) => {
+				const r = signs.split(/-|(&#x12[0-9a-f]{3};)/i).map((s) => {
+					let sym
+					json.numbers.forEach((d) => {
+						if (sym) return
+						if (new RegExp(`^${d.pattern || d[0]}$`).test(s)) {
+							sym = d.replacement || d[1]
+						}
+					})
+					return sym || s
+				}).join('')
+				return `>${r}<`
+			}, {logs:logs}))
+		}
+		// Remove superscript around cuneiform
+		stream.pipe(plugins.replaceString(/<sup>((?:&#x12[0-9a-f]{3};)+)<\/sup>/gi, (str, signs) => {
+			return signs
+		}, {logs:logs}))
 		// Now to wrap our cuneiform in ruby
 		if (json.ruby) {
 			stream = stream.pipe(plugins.dom((document) => {
@@ -669,7 +689,8 @@ gulp.task('transliterate', (done) => {
 						json.ruby.rt = [json.ruby.rt]
 					}
 					json.ruby.rt.forEach((rt) => {
-						html += `<rt lang="${rt['@lang'] || 'en'}">${eval(rt.eval)}`
+						const txt = eval(rt.eval)
+						if (txt && txt !== 'X' && txt !== '…') html += `<rt lang="${rt['@lang'] || 'en'}">${txt}`
 					})
 					html += `</ruby> `
 					el.outerHTML = html
