@@ -674,6 +674,10 @@ gulp.task('transliterate', (done) => {
 				return `>${r}<`
 			}, {logs:logs}))
 		}
+		// Remove superscript around cuneiform
+		stream.pipe(plugins.replaceString(/<sup>((?:&#x12[0-9a-f]{3};)+)<\/sup>/gi, (str, signs) => {
+			return signs
+		}, {logs:logs}))
 		// Now to wrap our cuneiform in ruby
 		if (json.ruby) {
 			stream = stream.pipe(plugins.dom((document) => {
