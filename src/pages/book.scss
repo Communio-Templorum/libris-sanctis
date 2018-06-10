@@ -1,6 +1,11 @@
 [itemscope][itemtype~='http://schema.org/Book'] {
 	counter-reset: chapter;
 
+	u[itemprop="author"] {
+		display: block;
+		text-align: center;
+	}
+
 	section {
 		margin-bottom: 1em;
 
