@@ -1,14 +1,1 @@
-{
-	"name": "libris-sanctis",
-	"sections":[
-	],
-	"modules":[
-		"ngRoute"
-	],
-	"pages":[
-		{
-			"path":"creation",
-			"module":"pageCreation"
-		}
-	]
-}
+{"name":"libris-sanctis","sections":[],"modules":["ngRoute"],"pages":[{"path":"creation","module":"pageCreation"},{"path":"iliad/iliad01","module":"pageIliadIliad01"},{"path":"iliad/iliad02","module":"pageIliadIliad02"},{"path":"iliad/iliad03","module":"pageIliadIliad03"},{"path":"iliad/iliad04","module":"pageIliadIliad04"},{"path":"iliad/iliad05","module":"pageIliadIliad05"},{"path":"iliad/iliad06","module":"pageIliadIliad06"},{"path":"iliad/iliad07","module":"pageIliadIliad07"},{"path":"iliad/iliad08","module":"pageIliadIliad08"},{"path":"iliad/iliad09","module":"pageIliadIliad09"},{"path":"iliad/iliad10","module":"pageIliadIliad10"},{"path":"iliad/iliad11","module":"pageIliadIliad11"},{"path":"iliad/iliad12","module":"pageIliadIliad12"},{"path":"iliad/iliad13","module":"pageIliadIliad13"},{"path":"iliad/iliad14","module":"pageIliadIliad14"},{"path":"iliad/iliad15","module":"pageIliadIliad15"},{"path":"iliad/iliad16","module":"pageIliadIliad16"},{"path":"iliad/iliad17","module":"pageIliadIliad17"},{"path":"iliad/iliad18","module":"pageIliadIliad18"},{"path":"iliad/iliad19","module":"pageIliadIliad19"},{"path":"iliad/iliad20","module":"pageIliadIliad20"},{"path":"iliad/iliad21","module":"pageIliadIliad21"},{"path":"iliad/iliad22","module":"pageIliadIliad22"},{"path":"iliad/iliad23","module":"pageIliadIliad23"},{"path":"iliad/iliad24","module":"pageIliadIliad24"}]}
