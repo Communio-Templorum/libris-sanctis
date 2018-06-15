@@ -9,7 +9,7 @@
 	section {
 		margin-bottom: 1em;
 
-		&::before {
+		section:not([itemtype="http://schema.org/Book"])::before {
 			display: block;
 			content: 'Chapter ' counter(chapter);
 			counter-increment: chapter;
