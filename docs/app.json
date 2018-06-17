@@ -1,0 +1,14 @@
+{
+	"name": "libris-sanctis",
+	"sections":[
+	],
+	"modules":[
+		"ngRoute"
+	],
+	"pages":[
+		{
+			"path":"creation",
+			"module":"pageCreation"
+		}
+	]
+}
