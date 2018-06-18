@@ -9,6 +9,10 @@
 		{
 			"path":"creation",
 			"module":"pageCreation"
+		},
+		{
+			"path":"de-legibus-templa",
+			"module":"pageDeLegibusTempla"
 		}
 	]
 }

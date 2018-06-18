@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('pageDeLegibusTempla')
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/de-legibus-templa/', {
