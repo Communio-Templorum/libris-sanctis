@@ -257,6 +257,7 @@ options = {
 'attr-name-style': 'dash',
 'attr-no-dup': true,
 'attr-req-value': false,
+'attr-validate': false,
 'class-no-dup': true,
 'class-style': 'dash',
 'doctype-html5': true,
@@ -379,7 +380,7 @@ options = {
 						})
 					})
 				})
-				return `const modules = ${JSON.stringify(site.modules)}${requires}`
+				return `const modules = ${JSON.stringify(site.modules, null, '\t')}${requires}`
 			},
 			options:{
 				notReplaced: false
@@ -754,7 +755,7 @@ angular.module('${argv.module}')
 				path: `${argv.sectionCC}${argv.nameCC}`,
 				module: argv.module,
 			})
-			return plugins.newFile(`app.json`, JSON.stringify(site), { src: true })
+			return plugins.newFile(`app.json`, JSON.stringify(site, null, '\t'), { src: true })
 				.pipe(gulp.dest(`./src`))
 		}
 	),
@@ -803,7 +804,7 @@ angular.module('${argv.module}')
 				path: `${argv.sectionCC}${argv.name}`,
 				module: argv.module,
 			})
-			return plugins.newFile(`app.json`, JSON.stringify(site), { src: true })
+			return plugins.newFile(`app.json`, JSON.stringify(site, null, '\t'), { src: true })
 				.pipe(gulp.dest(`./src`))
 		}
 	),
@@ -898,7 +899,7 @@ a:link,\na:visited {\n\tcolor: dodgerblue;\n}\n`
 			"pages":[
 			],
 		}
-		return plugins.newFile(`app.json`, JSON.stringify(site), { src: true })
+		return plugins.newFile(`app.json`, JSON.stringify(site, null, '\t'), { src: true })
 			.pipe(gulp.dest(`./src`))
 	},
 

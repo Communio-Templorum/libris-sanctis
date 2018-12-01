@@ -1,0 +1,84 @@
+[itemscope][itemtype~='http://schema.org/Book'] {
+	counter-reset: chapter;
+
+	section {
+		margin-bottom: 1em;
+
+		&::before {
+			display: block;
+			content: 'Chapter ' counter(chapter);
+			counter-increment: chapter;
+			font-size: 1.05em;
+			font-weight: bold;
+		}
+
+		aside[lang] {
+			display: none;
+		}
+
+		details > summary {
+			cursor: pointer;
+		}
+
+		dl {
+			float: right;
+			clear: right;
+			margin: 0.5em -0.5em 0.5em 0.5em;
+			padding: 0.5em;
+			border: 1px solid black;
+			border-right: 0 none;
+
+			dd {
+				vertical-align: middle;
+			}
+
+			dd::after {
+				display: inline;
+				font-size: 0.5em;
+				color: grey;
+				vertical-align: middle;
+				margin-left: 0.5em;
+			}
+
+			dd:lang(sux)::after {
+				content: '(Sumerian)';
+			}
+
+			dd:lang(akk)::after {
+				content: '(Akkadian)';
+			}
+
+			dd:lang(uga)::after {
+				content: '(Ugaritic)';
+			}
+
+			dd:lang(phn)::after {
+				content: '(Phoenician)';
+			}
+
+			dd:lang(syc)::after {
+				content: '(Classic Syrian)';
+			}
+
+			dd:lang(he)::after {
+				content: '(Hebrew)';
+			}
+
+			dd:lang(grc)::after {
+				content: '(Ancient Greek)';
+			}
+
+			dd:lang(la)::after {
+				content: '(Latin)';
+			}
+
+			dd:lang(el)::after {
+				content: '(Greek)';
+			}
+
+			dd:lang(ar)::after {
+				content: '(Arabic)';
+			}
+		}
+	}
+}
