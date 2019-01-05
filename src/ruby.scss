@@ -3,6 +3,10 @@ ruby {
 		display: none !important;
 	}
 
+	&.revise {
+		color: darkred;
+	}
+
 	:not(ol) > &:lang(en) {
 		display: inline;
 		display: contents;
