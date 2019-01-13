@@ -1,14 +1,32 @@
+:root {
+	font-family: 'Trebuchet MS', 'Open Sans', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
 header h1 {
 	margin-bottom: 0.7rem;
 	margin-top: 0;
 	text-align: center;
 }
 header { border-bottom: 2px solid grey; }
+
 a:link,
 a:visited {
 	text-decoration: none;
 	color: blue;
 }
+a:link:focus,
+a:link:hover,
+a:link:active,
+a:visited:focus,
+a:visited:hover,
+a:visited:active {
+	text-decoration: underline;
+}
+
 .proper { color: green; }
 main { counter-reset: column; }
 
