@@ -402,9 +402,10 @@ options = {
 	}
 }
 
-plugins.named = require('vinyl-named')
-plugins.webpack = require('webpack-stream')
-plugins.lintHTML = require('@yodasws/gulp-htmllint')
+plugins.named = require('vinyl-named');
+plugins.webpack = require('webpack-stream');
+plugins.lintHTML = require('@yodasws/gulp-htmllint');
+plugins.replaceString = require('@yodasws/gulp-pattern-replace');
 
 function runTasks(task) {
 	const fileType = task.fileType || 'static'
@@ -449,6 +450,7 @@ function runTasks(task) {
 		src: [
 			'src/**/*.{sa,sc,c}ss',
 			'!src/scss/*.{sa,sc,c}ss',
+			'!src/txt/**/*.{sa,sc,c}ss',
 			'!**/*.min.css',
 			'!**/min.css'
 		],

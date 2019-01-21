@@ -31,6 +31,16 @@
     text-table "^0.2.0"
     through2 "^2.0.1"
 
+"@yodasws/gulp-pattern-replace@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@yodasws/gulp-pattern-replace/-/gulp-pattern-replace-1.1.1.tgz#51fd55cbd2f5c8b559053fcb0c229cabfc220898"
+  integrity sha512-gDaIXwdX1uGgpoK0i/ydLZc/SwKPI28OofxgtLPXoz0RNnlS5QdcfkhUBLryQrbvOtHCByQ7eAfNt1C3QIDQQA==
+  dependencies:
+    extend "^3.0.0"
+    plugin-error "^1.0.1"
+    replacestream "^4.0.0"
+    through2 "^2.0.1"
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
@@ -2053,6 +2063,7 @@ escape-html@~1.0.3:
 escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.3, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
+  integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
 escodegen@^1.9.1:
   version "1.11.0"
@@ -2905,15 +2916,6 @@ gulp-order@^1.1.1:
   dependencies:
     minimatch "~0.2.14"
     through "~2.3.4"
-
-gulp-replace-string@<1.0.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/gulp-replace-string/-/gulp-replace-string-0.6.0.tgz#ffed5f2f806f735e9c329544e538b286fef2be8c"
-  dependencies:
-    extend "^3.0.0"
-    gulp-util "^3.0.7"
-    replacestream "^4.0.0"
-    through2 "^2.0.1"
 
 gulp-rm-lines@^0.0.9:
   version "0.0.9"
@@ -5543,6 +5545,7 @@ replace-homedir@^1.0.0:
 replacestream@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/replacestream/-/replacestream-4.0.3.tgz#3ee5798092be364b1cdb1484308492cb3dff2f36"
+  integrity sha512-AC0FiLS352pBBiZhd4VXB1Ab/lh0lEgpP+GGvZqbQh8a5cmXVoTe5EX/YeTFArnp4SRGTHh1qCHu9lGs1qG8sA==
   dependencies:
     escape-string-regexp "^1.0.3"
     object-assign "^4.0.1"
