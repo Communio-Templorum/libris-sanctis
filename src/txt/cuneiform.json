@@ -1124,23 +1124,34 @@
 		["diagonal colon","&#x12472;"],
 		["diagonal tricolon","&#x12473;"]
 	],
-	"ruby":{
-		"query":"span[title]",
-		"@lang":"sux",
-		"rb":"el.innerHTML",
-		"rt":[
-			{
-				"eval":"el.getAttribute('title').indexOf('(') > -1 ? el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[0] : ''",
+	"ruby": [
+		{
+			"query":"span[title]",
+			"@lang":"sux",
+			"rb":"el.innerHTML",
+			"rt":[
+				{
+					"eval":"el.getAttribute('title').indexOf('(') > -1 ? el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[0] : ''",
+					"@lang":"sux-Latn"
+				},
+				{
+					"eval":"el.getAttribute('title').indexOf('(') > -1 ? el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[1] : ''",
+					"@lang":"en"
+				},
+				{
+					"eval":"el.getAttribute('title').indexOf('(') === -1 ? el.getAttribute('title') : ''",
+					"@lang":"en"
+				}
+			]
+		},
+		{
+			"query":"strong[title]",
+			"@lang":"sux",
+			"rb":"el.innerHTML",
+			"rt":{
+				"eval":"el.getAttribute('title')",
 				"@lang":"sux-Latn"
-			},
-			{
-				"eval":"el.getAttribute('title').indexOf('(') > -1 ? el.getAttribute('title').split(/\\s*\\([^\\)]*\\)\\s*/g)[1] : ''",
-				"@lang":"en"
-			},
-			{
-				"eval":"el.getAttribute('title').indexOf('(') === -1 ? el.getAttribute('title') : ''",
-				"@lang":"en"
 			}
-		]
-	}
+		}
+	]
 }

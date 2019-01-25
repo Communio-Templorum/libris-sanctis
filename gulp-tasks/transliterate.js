@@ -10,6 +10,26 @@ module.exports = (gulp, plugins, options) => gulp.series(
 			`!src/txt/cuneiform/**/index.html`,
 		])
 			.pipe(plugins.replaceString(
+				new RegExp(`<!DOCTYPE html[^>]*>`, 'gi'),
+				'<!DOCTYPE html>',
+				{ logs },
+			))
+			.pipe(plugins.replaceString(
+				new RegExp(`<meta[^>]*charset=[^>]*>`, 'gi'),
+				'<meta charset="utf-8"/>',
+				{ logs },
+			))
+			.pipe(plugins.replaceString(
+				new RegExp(`(<link[^>]*>\s*)+`, 'gi'),
+				'<link rel="stylesheet" href="style.css"/>',
+				{ logs },
+			))
+			.pipe(plugins.replaceString(
+				new RegExp(`<body\s[^>]*>`, 'gi'),
+				'<body>',
+				{ logs },
+			))
+			.pipe(plugins.replaceString(
 				new RegExp(`<table[^>]*>\s*(<tbody[^>]*>\s*)?`, 'g'),
 				'<main><ol>\n',
 				{ logs },
@@ -106,7 +126,7 @@ module.exports = (gulp, plugins, options) => gulp.series(
 						return sym || p;
 					}).join('');
 					return `>${r}<`;
-				}, { logs: logs }));
+				}, { logs }));
 			}
 			// Transliterate Number Codes
 			if (Array.isArray(json.numbers)) {
@@ -122,7 +142,7 @@ module.exports = (gulp, plugins, options) => gulp.series(
 						return sym || s;
 					}).join('');
 					return `>${r}<`;
-				}, {logs:logs}));
+				}, { logs }));
 			}
 			// Remove superscript around cuneiform
 			stream.pipe(plugins.replaceString(/<sup>((?:&#x12[0-9a-f]{3};)+)<\/sup>/gi, (str, signs) => signs, { logs }))
