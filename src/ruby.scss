@@ -28,6 +28,25 @@ ruby {
 		}
 	}
 
+	rtc > & {
+		display: inline;
+		display: contents;
+
+		> rtc:lang(en) {
+			display: inline;
+
+			&::before {
+				display: inline;
+				content: ' (';
+			}
+
+			&::after {
+				display: inline;
+				content: ')';
+			}
+		}
+	}
+
 	ol > & {
 		display: list-item;
 
