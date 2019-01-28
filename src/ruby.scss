@@ -44,6 +44,10 @@ ruby {
 				display: inline;
 				content: ')';
 			}
+
+			> abbr {
+				font-style: italic;
+			}
 		}
 	}
 

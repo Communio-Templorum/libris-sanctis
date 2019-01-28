@@ -79,6 +79,10 @@
 			dd:lang(ar)::after {
 				content: '(Arabic)';
 			}
+
+			dd:lang(en)::after {
+				content: '(English)';
+			}
 		}
 	}
 }
