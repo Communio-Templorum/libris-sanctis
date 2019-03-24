@@ -609,8 +609,6 @@ gulp.task('watch', () => {
 	gulp.watch('./src/**/*.js', gulp.series('compile:js'))
 });
 
-gulp.task('transliterate', getTask('transliterate'));
-
 gulp.task('serve', () => (
 	gulp.src(options.dest)
 		.pipe(plugins.webserver(options.webserver))
