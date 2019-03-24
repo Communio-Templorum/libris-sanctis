@@ -871,7 +871,8 @@ gulp.task('compile:css', gulp.series('compile:sass'));
 gulp.task('default', gulp.series(
 	'lint',
 	'compile',
-	'serve',
-	// Bash on Windows can't do watch=>compile and livereload at the same time >_<
-//	'watch',
+	gulp.parallel(
+		'serve',
+		'watch',
+	),
 ));
