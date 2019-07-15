@@ -581,7 +581,6 @@ gulp.task('transfer:res', gulp.parallel(
 		gulp.src([
 			'./node_modules/angular/angular.min.js{,.map}',
 			'./node_modules/angular-route/angular-route.min.js{,.map}',
-			'./node_modules/jquery/dist/jquery.min.{js,map}',
 		])
 		.pipe(gulp.dest(path.join(options.dest, 'res')))
 	),
@@ -845,7 +844,6 @@ body > nav:not([hidden]) {\n\tdisplay: flex;\n\tflex-flow: row wrap;\n\tjustify-
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <base href="/${packageJson.name}/"/>
 <link rel="stylesheet" href="min.css"/>
-<script src="res/jquery.min.js"></script>
 <script src="res/angular.min.js"></script>
 <script src="res/angular-route.min.js"></script>
 <script src="app.js"></script>\n`;
