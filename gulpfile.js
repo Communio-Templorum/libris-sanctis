@@ -87,7 +87,6 @@ const plugins = require('gulp-load-plugins')({
 		'gulp-htmlmin': 'compileHTML',
 		'gulp-eslint': 'lintES',
 		'gulp-babel': 'compileJS',
-		'gulp-jsdom': 'dom',
 		'gulp-order': 'sort',
 		'gulp-sass': 'compileSass',
 		'gulp-file': 'newFile',
