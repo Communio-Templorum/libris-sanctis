@@ -147,7 +147,7 @@ options = {
 'no-undef': 0,
 'no-tabs': 0,
 'no-var': 2,
-'semi': 0,
+'semi': 2,
 
 		}
 	},
@@ -365,43 +365,42 @@ options = {
 				].forEach((p) => {
 					if (!site[p.prop]) site[p.prop] = []
 					site[p.prop].forEach((c) => {
-						site.modules.push(c.module || camelCase(p.pref, c.path))
-						;['module','routes','ctrl'].forEach((k) => {
-							let file = `${p.prop}/${c.path}`
-							if (file.substr(-1) !== '/') file += '/'
-							file += `${k}.js`
-							console.log(`checking for file ${file}`)
+						site.modules.push(c.module || camelCase(p.pref, c.path));
+						['module','routes','ctrl'].forEach((k) => {
+							let file = `${p.prop}/${c.path}`;
+							if (file.substr(-1) !== '/') file += '/';
+							file += `${k}.js`;
 							try {
-								fs.accessSync(`./src/${file}`)
-								requires += `\nrequire('../src/${file}')`
+								fs.accessSync(`./src/${file}`);
+								requires += `\nrequire('../src/${file}')`;
 							} catch (e) {}
-						})
-					})
-				})
-				return `const modules = ${JSON.stringify(site.modules)}${requires}`
+						});
+					});
+				});
+				return `const modules = ${JSON.stringify(site.modules)}${requires}`;
 			},
 			options:{
-				notReplaced: false
-			}
-		}
+				notReplaced: false,
+			},
+		},
 	},
 	webpack:{
 		logs:{
-			enabled:false
+			enabled:false,
 		},
 		output:{
-			filename:'[name].js'
+			filename:'[name].js',
 		},
 		module:{
 			loaders:[
 				{ test:/\.json$/, loader:'json-loader' },
-			]
-		}
+			],
+		},
 	},
 	ssi:{
-		root: 'src'
-	}
-}
+		root: 'src',
+	},
+};
 
 plugins.named = require('vinyl-named')
 plugins.lintHTML = require('@yodasws/gulp-htmllint')
@@ -533,7 +532,7 @@ gulp.task('lint:html', () => {
 		'src/**/*.html',
 	])
 		.pipe(plugins.lintHTML(options.lintHTML))
-		.pipe(plugins.lintHTML.failOnError())
+		// .pipe(plugins.lintHTML.failOnError())
 		.pipe(plugins.lintHTML.format())
 })
 
@@ -544,7 +543,7 @@ gulp.task('lint:sass', () => {
 		'!**/min.css'
 	])
 		.pipe(plugins.lintSass(options.lintSass))
-		.pipe(plugins.lintSass.failOnError())
+		// .pipe(plugins.lintSass.failOnError())
 		.pipe(plugins.lintSass.format())
 })
 
@@ -555,7 +554,7 @@ gulp.task('lint:js', () => {
 		'!**/min.js'
 	])
 		.pipe(plugins.lintES(options.lintES))
-		.pipe(plugins.lintES.failOnError())
+		// .pipe(plugins.lintES.failOnError())
 		.pipe(plugins.lintES.format())
 })
 
@@ -824,10 +823,10 @@ body > nav:not([hidden]) {\n\tdisplay: flex;\n\tflex-flow: row wrap;\n\tjustify-
 			done()
 			return
 		}
-		const str = `<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<base href="/${packageJson.name}/"/>
-<link rel="stylesheet" href="min.css"/>
+		const str = `<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<base href="/${packageJson.name}/" />
+<link rel="stylesheet" href="min.css" />
 <script src="res/jquery.min.js"></script>
 <script src="res/angular.min.js"></script>
 <script src="res/angular-route.min.js"></script>
