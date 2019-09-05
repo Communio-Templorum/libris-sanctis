@@ -402,8 +402,9 @@ options = {
 	},
 };
 
-plugins.named = require('vinyl-named')
-plugins.lintHTML = require('@yodasws/gulp-htmllint')
+plugins.named = require('vinyl-named');
+plugins.lintHTML = require('@yodasws/gulp-htmllint');
+plugins.replaceString = require('@yodasws/gulp-pattern-replace');
 
 function runTasks(task) {
 	const fileType = task.fileType || 'static'
