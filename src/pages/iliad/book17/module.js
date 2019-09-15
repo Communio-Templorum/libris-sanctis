@@ -1,3 +1,4 @@
-angular.module('pageIliadBook17', [
-	'ngRoute',
-]);
+yodasws.page('pageIliadBook17').setRoute({
+	template: 'pages/iliad/book17/book17.html',
+	route: '/iliad/book17/',
+});
