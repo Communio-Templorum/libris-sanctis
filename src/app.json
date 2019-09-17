@@ -198,6 +198,10 @@
 		{
 			"path": "odyssey/book24",
 			"module": "pageOdysseyBook24"
+		},
+		{
+			"path": "iliad",
+			"module": "pageIliad"
 		}
 	]
 }

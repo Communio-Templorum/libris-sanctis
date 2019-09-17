@@ -191,9 +191,14 @@
 		const xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === 4) {
+				// Page Loaded
 				if (Math.floor(xhr.status / 100) === 2) {
-					// Page Loaded
-					delete yodasws.page(main.getAttribute('y-page')).element;
+					// Unload Old Page
+					const oldPage = main.getAttribute('y-page');
+					yodasws.page(oldPage).fire('unload');
+					delete yodasws.page(oldPage).element;
+
+					// Display Page
 					main.innerHTML = xhr.response;
 					main.setAttribute('y-page', route.page.name);
 					Object.defineProperty(route.page, 'element', {
