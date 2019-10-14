@@ -12,10 +12,13 @@ body {
 	margin: 0 auto;
 	width: 100%;
 	max-width: 1200px;
-	border: solid black;
-	border-width: 0 1px;
 	min-height: 100%;
 	background: white;
+
+	@media (min-width: 1201px) {
+		border: solid black;
+		border-width: 0 1px;
+	}
 
 	> header,
 	> nav,
@@ -41,4 +44,19 @@ h2 {
 a:link,
 a:visited {
 	color: dodgerblue;
+}
+
+aside {
+	float: right;
+	max-width: 310px;
+	margin-top: 1em;
+	border-style: solid;
+	border-color: lightgrey lightgrey black black;
+	border-width: 1px;
+	padding: 10px 10px 1em 1em;
+	text-align: justify;
+
+	> ol {
+		margin-bottom: 0;
+	}
 }
