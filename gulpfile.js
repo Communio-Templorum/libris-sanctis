@@ -176,7 +176,7 @@ const options = {
 'no-color-keywords': 0,
 'no-color-literals': 1,
 'no-combinators': 0,
-'no-css-comments': 1,
+'no-css-comments': 0,
 'no-debug': 1,
 'no-disallowed-properties': 1,
 'no-duplicate-properties': [
@@ -184,7 +184,7 @@ const options = {
 		'display',
 	]}
 ],
-'no-empty-rulesets': 1,
+'no-empty-rulesets': 0,
 'no-extends': 0,
 'no-ids': 1,
 'no-important': 1,
@@ -232,7 +232,7 @@ const options = {
 'max-line-length': 0,
 'max-file-line-count': 0,
 'nesting-depth': [
-	1, { "max-depth": 4 }
+	1, { 'max-depth': 4 }
 ],
 'property-sort-order': 0,
 'pseudo-element': 1,
@@ -339,7 +339,6 @@ const options = {
 		],
 		js: [
 			'js/**/*.js',
-			'**/module.js',
 			'{components,pages}/**/*.js',
 			'app.js',
 		],
@@ -350,7 +349,6 @@ const options = {
 			replacement: () => {
 				// Read app.json to build site!
 				const site = require('./src/app.json');
-				if (!site.modules) site.modules = [];
 				const requiredFiles = [];
 				[
 					{
@@ -365,9 +363,8 @@ const options = {
 					if (!site[p.prop]) site[p.prop] = [];
 					site[p.prop].forEach((c) => {
 						const module = c.module || camelCase(p.pref, c.path);
-						if (!site.modules.includes(module)) site.modules.push(module);
 						['module', 'ctrl'].forEach((k) => {
-							const file = path.join(p.prop, c.path, `${k}.js`);
+							const file = path.join(p.prop, c, `${k}.js`);
 							try {
 								fs.accessSync(`./src/${file}`);
 								requiredFiles.push(file);
@@ -397,7 +394,7 @@ const options = {
 					}
 					requires += `require('../src/${requiredFiles[i]}');\n`;
 				});
-				return `const modules = ${JSON.stringify(site.modules, null, '\t')};\n${requires}`;
+				return requires;
 			},
 			options:{
 				notReplaced: false,
@@ -653,10 +650,7 @@ gulp.task('generate:page', gulp.series(
 			// Add to app.json
 			const site = require('./src/app.json');
 			if (!site.pages) site.pages = [];
-			site.pages.push({
-				path: `${argv.sectionCC}${argv.nameCC}`,
-				module: argv.module,
-			});
+			site.pages.push(`${argv.sectionCC}${argv.nameCC}`);
 			return plugins.newFile('app.json', JSON.stringify(site, null, '\t'), { src: true })
 				.pipe(gulp.dest(`./src`));
 		}
@@ -744,8 +738,6 @@ yodasws.page('home').setRoute({
 				components:[
 				],
 				sections:[
-				],
-				modules:[
 				],
 				pages:[
 				],

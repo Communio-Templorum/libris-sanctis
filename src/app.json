@@ -3,205 +3,56 @@
 	"sections": [],
 	"modules": [],
 	"pages": [
-		{
-			"path": "creation",
-			"module": "pageCreation"
-		},
-		{
-			"path": "iliad/book1",
-			"module": "pageIliadBook1"
-		},
-		{
-			"path": "iliad/book2",
-			"module": "pageIliadBook2"
-		},
-		{
-			"path": "iliad/book3",
-			"module": "pageIliadBook3"
-		},
-		{
-			"path": "iliad/book4",
-			"module": "pageIliadBook4"
-		},
-		{
-			"path": "iliad/book5",
-			"module": "pageIliadBook5"
-		},
-		{
-			"path": "iliad/book6",
-			"module": "pageIliadBook6"
-		},
-		{
-			"path": "iliad/book7",
-			"module": "pageIliadBook7"
-		},
-		{
-			"path": "iliad/book8",
-			"module": "pageIliadBook8"
-		},
-		{
-			"path": "iliad/book9",
-			"module": "pageIliadBook9"
-		},
-		{
-			"path": "iliad/book10",
-			"module": "pageIliadBook10"
-		},
-		{
-			"path": "iliad/book11",
-			"module": "pageIliadBook11"
-		},
-		{
-			"path": "iliad/book12",
-			"module": "pageIliadBook12"
-		},
-		{
-			"path": "iliad/book13",
-			"module": "pageIliadBook13"
-		},
-		{
-			"path": "iliad/book14",
-			"module": "pageIliadBook14"
-		},
-		{
-			"path": "iliad/book15",
-			"module": "pageIliadBook15"
-		},
-		{
-			"path": "iliad/book16",
-			"module": "pageIliadBook16"
-		},
-		{
-			"path": "iliad/book17",
-			"module": "pageIliadBook17"
-		},
-		{
-			"path": "iliad/book18",
-			"module": "pageIliadBook18"
-		},
-		{
-			"path": "iliad/book19",
-			"module": "pageIliadBook19"
-		},
-		{
-			"path": "iliad/book20",
-			"module": "pageIliadBook20"
-		},
-		{
-			"path": "iliad/book21",
-			"module": "pageIliadBook21"
-		},
-		{
-			"path": "iliad/book22",
-			"module": "pageIliadBook22"
-		},
-		{
-			"path": "iliad/book23",
-			"module": "pageIliadBook23"
-		},
-		{
-			"path": "iliad/book24",
-			"module": "pageIliadBook24"
-		},
-		{
-			"path": "odyssey/book1",
-			"module": "pageOdysseyBook1"
-		},
-		{
-			"path": "odyssey/book2",
-			"module": "pageOdysseyBook2"
-		},
-		{
-			"path": "odyssey/book3",
-			"module": "pageOdysseyBook3"
-		},
-		{
-			"path": "odyssey/book4",
-			"module": "pageOdysseyBook4"
-		},
-		{
-			"path": "odyssey/book5",
-			"module": "pageOdysseyBook5"
-		},
-		{
-			"path": "odyssey/book6",
-			"module": "pageOdysseyBook6"
-		},
-		{
-			"path": "odyssey/book7",
-			"module": "pageOdysseyBook7"
-		},
-		{
-			"path": "odyssey/book8",
-			"module": "pageOdysseyBook8"
-		},
-		{
-			"path": "odyssey/book9",
-			"module": "pageOdysseyBook9"
-		},
-		{
-			"path": "odyssey/book10",
-			"module": "pageOdysseyBook10"
-		},
-		{
-			"path": "odyssey/book11",
-			"module": "pageOdysseyBook11"
-		},
-		{
-			"path": "odyssey/book12",
-			"module": "pageOdysseyBook12"
-		},
-		{
-			"path": "odyssey/book13",
-			"module": "pageOdysseyBook13"
-		},
-		{
-			"path": "odyssey/book14",
-			"module": "pageOdysseyBook14"
-		},
-		{
-			"path": "odyssey/book15",
-			"module": "pageOdysseyBook15"
-		},
-		{
-			"path": "odyssey/book16",
-			"module": "pageOdysseyBook16"
-		},
-		{
-			"path": "odyssey/book17",
-			"module": "pageOdysseyBook17"
-		},
-		{
-			"path": "odyssey/book18",
-			"module": "pageOdysseyBook18"
-		},
-		{
-			"path": "odyssey/book19",
-			"module": "pageOdysseyBook19"
-		},
-		{
-			"path": "odyssey/book20",
-			"module": "pageOdysseyBook20"
-		},
-		{
-			"path": "odyssey/book21",
-			"module": "pageOdysseyBook21"
-		},
-		{
-			"path": "odyssey/book22",
-			"module": "pageOdysseyBook22"
-		},
-		{
-			"path": "odyssey/book23",
-			"module": "pageOdysseyBook23"
-		},
-		{
-			"path": "odyssey/book24",
-			"module": "pageOdysseyBook24"
-		},
-		{
-			"path": "iliad",
-			"module": "pageIliad"
-		}
+		"creation",
+		"iliad/book1",
+		"iliad/book2",
+		"iliad/book3",
+		"iliad/book4",
+		"iliad/book5",
+		"iliad/book6",
+		"iliad/book7",
+		"iliad/book8",
+		"iliad/book9",
+		"iliad/book10",
+		"iliad/book11",
+		"iliad/book12",
+		"iliad/book13",
+		"iliad/book14",
+		"iliad/book15",
+		"iliad/book16",
+		"iliad/book17",
+		"iliad/book18",
+		"iliad/book19",
+		"iliad/book20",
+		"iliad/book21",
+		"iliad/book22",
+		"iliad/book23",
+		"iliad/book24",
+		"odyssey/book1",
+		"odyssey/book2",
+		"odyssey/book3",
+		"odyssey/book4",
+		"odyssey/book5",
+		"odyssey/book6",
+		"odyssey/book7",
+		"odyssey/book8",
+		"odyssey/book9",
+		"odyssey/book10",
+		"odyssey/book11",
+		"odyssey/book12",
+		"odyssey/book13",
+		"odyssey/book14",
+		"odyssey/book15",
+		"odyssey/book16",
+		"odyssey/book17",
+		"odyssey/book18",
+		"odyssey/book19",
+		"odyssey/book20",
+		"odyssey/book21",
+		"odyssey/book22",
+		"odyssey/book23",
+		"odyssey/book24",
+		"iliad",
+		"odyssey"
 	]
 }
