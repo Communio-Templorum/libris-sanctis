@@ -32,15 +32,25 @@
 		}
 
 		dl {
-			float: right;
-			clear: right;
-			margin: 0.5em -0.5em 0.5em 0.5em;
+			margin: 0.5em 0.5em 0.5em 0;
 			padding: 0.5em;
 			border: 1px solid black;
-			border-right: 0 none;
+
+			@media #{$md} {
+				float: right;
+				clear: right;
+				margin: 0.5em -0.5em 0.5em 0.5em;
+				padding: 0.5em;
+				border: 1px solid black;
+				border-right: 0 none;
+			}
 
 			dd {
 				vertical-align: middle;
+
+				@media #{$md} {
+					max-width: 200px;
+				}
 			}
 
 			dd::after {
