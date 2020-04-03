@@ -60,7 +60,7 @@ const fileExists = require('file-exists');
 
 const plugins = {
 	...require('gulp-load-plugins')({
-		rename:{
+		rename: {
 			'yodasws.gulp-pattern-replace': 'replaceString',
 			'gulp-autoprefixer': 'prefixCSS',
 			'gulp-run-command': 'cli',
@@ -72,9 +72,9 @@ const plugins = {
 			'gulp-sass': 'compileSass',
 			'gulp-file': 'newFile',
 		},
-		postRequireTransforms:{
+		postRequireTransforms: {
 			cli(cli) {
-				return cli.default
+				return cli.default;
 			},
 		},
 	}),
@@ -91,11 +91,11 @@ const browsers = [
 	'last 2 Chrome versions',
 	'Safari >= 10',
 	'ie_mob >= 11',
-	'ie >= 11'
+	'ie >= 11',
 ];
 
 const options = {
-	compileJS:{
+	compileJS: {
 		comments: false,
 		minified: true,
 		babelrc: false,
@@ -109,7 +109,7 @@ const options = {
 			],
 		]
 	},
-	compileSass:{
+	compileSass: {
 		importer: require('@mightyplow/sass-dedup-importer'),
 		outputStyle: 'compressed',
 		includePaths: [
@@ -117,10 +117,10 @@ const options = {
 			'src/scss',
 		],
 	},
-	stripCssComments:{
+	stripCssComments: {
 		preserve: false,
 	},
-	compileHTML:{
+	compileHTML: {
 		collapseWhitespace: true,
 		decodeEntities: true,
 		keepClosingSlash: true,
@@ -130,7 +130,7 @@ const options = {
 		removeStyleLinkTypeAttributes: true,
 		useShortDoctype: true,
 	},
-	lintES:{
+	lintES: {
 		parserOptions: {
 			sourceType: 'module',
 			ecmaVersion: 7,
@@ -157,7 +157,7 @@ const options = {
 
 		},
 	},
-	lintSass:{
+	lintSass: {
 		files: {
 			ignore: '**/*.min.css'
 		},
@@ -274,7 +274,7 @@ const options = {
 			],
 		},
 	},
-	concat:{
+	concat: {
 		css: {
 			path: 'min.css',
 		},
@@ -356,7 +356,7 @@ const options = {
 				});
 				return requires;
 			},
-			options:{
+			options: {
 				notReplaced: false,
 			},
 		},
@@ -602,11 +602,11 @@ gulp.task('generate:page', gulp.series(
 			site.pages.push(`${argv.sectionCC}${argv.nameCC}`);
 			return plugins.newFile('app.json', JSON.stringify(site, null, '\t'), { src: true })
 				.pipe(gulp.dest(`./src`));
-		}
+		},
 	),
 	plugins.cli([
 		`git status`,
-	])
+	]),
 ));
 
 gulp.task('init:win', () => {
@@ -627,8 +627,8 @@ gulp.task('init', gulp.series(
 
 		(done) => {
 			if (fileExists.sync('src/index.html')) {
-				done()
-				return
+				done();
+				return;
 			}
 			const str = `<!DOCTYPE html>
 <html lang="en-US">
@@ -640,15 +640,15 @@ gulp.task('init', gulp.series(
 <!--#include file="includes/header/header.html" -->
 <main></main>
 </body>
-</html>\n`
+</html>\n`;
 			return plugins.newFile(`index.html`, str, { src: true })
-				.pipe(gulp.dest(`./src`))
+				.pipe(gulp.dest(`./src`));
 		},
 
 		(done) => {
 			if (fileExists.sync('src/main.scss')) {
-				done()
-				return
+				done();
+				return;
 			}
 			const str = `* { box-sizing: border-box; }\n
 :root { font-family: 'Trebuchet MS', 'Open Sans', 'Helvetica Neue', sans-serif; }\n
@@ -696,8 +696,8 @@ yodasws.page('home').setRoute({
 
 		(done) => {
 			if (fileExists.sync('src/includes/header/header.html')) {
-				done()
-				return
+				done();
+				return;
 			}
 			const str = `<header>\n\t<h1>${argv.name}</h1>\n</header>\n<nav hidden>\n\t<a href=".">Home</a>\n</nav>\n`
 			return plugins.newFile(`header.html`, str, { src: true })
@@ -706,8 +706,8 @@ yodasws.page('home').setRoute({
 
 		(done) => {
 			if (fileExists.sync('src/includes/header/header.scss')) {
-				done()
-				return
+				done();
+				return;
 			}
 			const str = `$header-color: black;\n$header-bg: lightgreen;\n$header-second-color: black;\n
 body > header {\n\tcolor: $header-color;\n\tbackground: $header-bg;\n
@@ -741,13 +741,13 @@ body > nav:not([hidden]) {\n\tdisplay: flex;\n\tflex-flow: row wrap;\n\tjustify-
 			const str = `<h2>Home</h2>\n`;
 			return plugins.newFile(`home.html`, str, { src: true })
 				.pipe(gulp.dest(`./src/pages`));
-		}
+		},
 
 	),
 
 	plugins.cli([
 		`git status`,
-	])
+	]),
 ));
 
 gulp.task('compile:scss', gulp.series('compile:sass'));
@@ -759,5 +759,5 @@ gulp.task('default', gulp.series(
 	gulp.parallel(
 		'serve',
 		'watch',
-	)
+	),
 ));
