@@ -1,0 +1,70 @@
+ruby {
+	&[hidden] {
+		display: none !important;
+	}
+
+	&.revise {
+		color: darkred;
+	}
+
+	:not(ol) > &:lang(en) {
+		display: inline;
+		display: contents;
+	}
+
+	&:lang(en) > rt {
+		display: inline;
+		font-size: 0.8em;
+		color: grey;
+
+		&::before {
+			display: inline;
+			content: ' (';
+		}
+
+		&::after {
+			display: inline;
+			content: ') ';
+		}
+	}
+
+	rtc > & {
+		display: inline;
+		display: contents;
+
+		> rtc:lang(en) {
+			display: inline;
+
+			&::before {
+				display: inline;
+				content: ' (';
+			}
+
+			&::after {
+				display: inline;
+				content: ')';
+			}
+
+			> abbr {
+				font-style: italic;
+			}
+		}
+	}
+
+	ol > & {
+		display: list-item;
+
+		&:lang(en) > rtc:lang(grc),
+		&:lang(en) > rtc:lang(la) {
+			display: block;
+			font-size: 0.8em;
+			color: grey;
+			margin-left: 2rem;
+		}
+	}
+
+	ruby ruby > rt {
+		display: inline;
+		vertical-align: super;
+	}
+}

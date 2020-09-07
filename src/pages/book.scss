@@ -1,0 +1,123 @@
+[itemscope][itemtype~='http://schema.org/Book'] {
+	counter-reset: chapter;
+
+	u[itemprop="author"] {
+		display: block;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+
+	> nav {
+		margin-top: 1.1em;
+		text-align: center;
+		font-size: smaller;
+	}
+
+	section {
+		margin-bottom: 1em;
+
+		section:not([itemtype="http://schema.org/Book"])::before {
+			display: block;
+			content: 'Chapter ' counter(chapter);
+			counter-increment: chapter;
+			font-size: 1.05em;
+			font-weight: bold;
+		}
+
+		aside[lang] {
+			display: none;
+		}
+
+		details > summary {
+			cursor: pointer;
+		}
+
+		dl {
+			margin: 0.5em 0.5em 0.5em 0;
+			padding: 0.5em;
+			border: 1px solid black;
+
+			@media #{$md} {
+				float: right;
+				clear: right;
+				margin: 0.5em -0.5em 0.5em 0.5em;
+				padding: 0.5em;
+				border: 1px solid black;
+				border-right: 0 none;
+			}
+
+			dd {
+				vertical-align: middle;
+
+				@media #{$md} {
+					max-width: 200px;
+				}
+			}
+
+			dd::after {
+				display: inline;
+				font-size: 0.5em;
+				color: grey;
+				vertical-align: middle;
+				margin-left: 0.5em;
+			}
+
+			dd:lang(sux)::after {
+				content: '(Sumerian)';
+			}
+
+			dd:lang(akk)::after {
+				content: '(Akkadian)';
+			}
+
+			dd:lang(uga)::after {
+				content: '(Ugaritic)';
+			}
+
+			dd:lang(phn)::after {
+				content: '(Phoenician)';
+			}
+
+			dd:lang(syc)::after {
+				content: '(Classic Syrian)';
+			}
+
+			dd:lang(he)::after {
+				content: '(Hebrew)';
+			}
+
+			dd:lang(grc)::after {
+				content: '(Ancient Greek)';
+			}
+
+			dd:lang(la)::after {
+				content: '(Latin)';
+			}
+
+			dd:lang(el)::after {
+				content: '(Greek)';
+			}
+
+			dd:lang(ar)::after {
+				content: '(Arabic)';
+			}
+
+			dd:lang(en)::after {
+				content: '(English)';
+			}
+		}
+	}
+
+	ol,
+	ul {
+		&.no-bullets {
+			list-style: none;
+			padding-left: 0;
+		}
+	}
+
+	> small {
+		display: block;
+		text-align: center;
+	}
+}

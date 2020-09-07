@@ -1,0 +1,18 @@
+[y-page='pageThesesOfReformation'] {
+	h3 {
+		text-transform: uppercase;
+
+		&:not(:first-of-type) {
+			counter-increment: heading 1;
+
+			&::before {
+				content: counter(heading) '. ';
+			}
+		}
+	}
+
+	div > ol {
+		margin: 0;
+		list-style-type: upper-roman;
+	}
+}

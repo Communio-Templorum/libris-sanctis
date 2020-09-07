@@ -1,16 +1,15 @@
-'use strict';
-
-angular.module('Libris Sanctis', [
-	'ngRoute',
-	'pageCreation',
-	'pageRevelations',
-])
-.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-	$routeProvider.when('/', {
-		templateUrl: 'pages/home.html',
-		controller() {
-			angular.element('[ng-view]').attr('ng-view', 'pageHome')
-		},
-	})
-	.otherwise({redirectTo: '/'})
-}])
+/* app.json */
+yodasws.page('home').setRoute({
+	template: 'pages/home.html',
+	route: '/',
+}).on('load', () => {
+	const nav = document.querySelector('body > nav');
+	if (nav instanceof Element) {
+		nav.setAttribute('hidden', '');
+	}
+}).on('unload', () => {
+	const nav = document.querySelector('body > nav');
+	if (nav instanceof Element) {
+		nav.removeAttribute('hidden');
+	}
+});
