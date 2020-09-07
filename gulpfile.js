@@ -584,7 +584,8 @@ gulp.task('generate:page', gulp.series(
 		() => {
 			const str = `yodasws.page('${argv.sectionCC}${argv.nameCC}').setRoute({
 	template: 'pages/${argv.sectionCC}${argv.nameCC}/${argv.nameCC}.html',
-	route: '/${argv.sectionCC}${argv.nameCC}/',
+	canonicalRoute: '/${argv.sectionCC}${argv.nameCC}/',
+	route: '/${argv.sectionCC}${argv.nameCC}/?',
 }).on('load', () => {
 	console.log('Page loaded!');
 });\n`
