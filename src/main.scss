@@ -1,3 +1,4 @@
+@import "src/includes/include.scss";
 $sm: "(min-width: 0px)";
 $md: "(min-width: 760px)";
 $lg: "(min-width: 1000px)";
@@ -113,12 +114,19 @@ main {
 		display: flex;
 		flex-flow: column;
 
-		aside {
+		> aside {
 			float: none;
 			order: 1;
 			margin: 0 -#{$h-padding};
 			border: 10px solid gainsboro;
 			padding: $v-padding $h-padding;
+		}
+
+		> footer {
+			order: 2;
+			margin: 0 -#{$h-padding};
+			border-top: 10px solid gainsboro;
+			padding: 1em #{$h-padding};
 		}
 	}
 

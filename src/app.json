@@ -53,6 +53,11 @@
 		"odyssey/book23",
 		"odyssey/book24",
 		"iliad",
-		"odyssey"
+		"odyssey",
+		"ScholaAetii",
+		"ScholaAetii/thesesOfReformation",
+		"ScholaAetii/epistleRomans",
+		"license",
+		"ApologeticsOfEvil"
 	]
 }
