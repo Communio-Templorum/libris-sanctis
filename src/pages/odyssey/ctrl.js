@@ -1,4 +1,5 @@
 yodasws.page('odyssey').setRoute({
 	template: 'pages/odyssey/odyssey.html',
-	route: '/odyssey/',
+	canonicalRoute: '/odyssey/',
+	route: '/odyssey/?',
 });
