@@ -8,14 +8,24 @@
 		].map(parent => new parent(...arguments))));
 	});
 
+	let firstLoad = true;
+
 	// Define Item Collections
 	[
 		'pages',
-		'routes',
 		'components',
 	].forEach((key) => {
 		Object.defineProperty(yodasws, key, {
 			value: {},
+		});
+	});
+
+	// Define Map Collections
+	[
+		'routes',
+	].forEach((key) => {
+		Object.defineProperty(yodasws, key, {
+			value: new Map(),
 		});
 	});
 
@@ -169,6 +179,7 @@
 
 	// <main> Element
 	let main;
+	let spinner;
 
 	// Load First Route
 	window.onload = () => {
@@ -176,6 +187,8 @@
 			history.replaceState({}, null, '#!/');
 		}
 		main = document.querySelector('main');
+		spinner = document.getElementById('y-spinner');
+		spinner.remove();
 		window.onpopstate();
 	};
 
@@ -193,13 +206,12 @@
 			if (xhr.readyState === 4) {
 				// Page Loaded
 				if (Math.floor(xhr.status / 100) === 2) {
-					// Unload Old Page
-					const oldPage = main.getAttribute('y-page');
-					yodasws.page(oldPage).fire('unload');
-					delete yodasws.page(oldPage).element;
-
+					if (typeof route.canonicalRoute === 'string' && route.canonicalRoute !== '') {
+						history.replaceState({}, null, `#!${route.canonicalRoute}`);
+					}
 					// Display Page
 					main.innerHTML = xhr.response;
+					showMain();
 					main.setAttribute('y-page', route.page.name);
 					Object.defineProperty(route.page, 'element', {
 						configurable: true,
@@ -213,38 +225,84 @@
 					};
 					main.scrollTo(scrollTop);
 					window.scrollTo(scrollTop);
+					yodasws.fire('page-loaded', {
+						page: route.page.name,
+					});
+					if (firstLoad) {
+						yodasws.fire('site-loaded');
+						firstLoad = false;
+					}
 				} else switch (xhr.status) {
 					case 404:
-						// Page not found
-						if (yodasws.routes['404'] instanceof Route) {
-							loadRoute(yodasws.routes['404']);
+						if (route.route !== '404' && yodasws.routes.has('404')) {
+							loadRoute(yodasws.routes.get('404'));
 						} else {
 							main.innerHTML = '<p>Page not found</p>';
+							showMain();
 						}
 						break;
 					default:
 						main.innerHTML = '<p>Error</p>';
+						showMain();
 				}
 			}
 		};
+
+		// Unload old page
+		const oldPage = main.getAttribute('y-page');
+		yodasws.page(oldPage).fire('unload');
+		delete yodasws.page(oldPage).element;
+		main.style.display = 'none';
+		main.style.opacity = 0;
+		// Show spinner
+		main.insertAdjacentElement('afterend', spinner);
+
 		xhr.open('GET', route.template);
+
 		xhr.send();
+	}
+
+	// Remove the spinner and stop hiding <main>
+	function showMain() {
+		spinner.remove();
+		main.style.removeProperty('display');
+		main.style.removeProperty('opacity');
 	}
 
 	// Route Handling
 	window.onpopstate = () => {
-		const route = yodasws.routes[window.location.hash.replace('#!', '')];
-		if (route && route.template) {
-			loadRoute(route);
-		} else {
-			loadRoute(yodasws.page('404').setRoute({
-				template: 'pages/404.html',
-			}));
+		const url = window.location.hash.replace('#!', '');
+		for (const pageRoute of yodasws.routes.values()) {
+			const regex = (() => {
+				if (typeof pageRoute.route === 'string') {
+					return new RegExp(`^${pageRoute.route}$`);
+				}
+				if (pageRoute.route instanceof RegExp) return pageRoute.route;
+				return false;
+			})();
+			if (!regex) continue;
+			if (regex.test(url) && pageRoute.template) {
+				loadRoute({
+					...pageRoute,
+					template: window.location.hash.replace('#!', '').replace(regex, pageRoute.template),
+				});
+				return;
+			}
 		}
+		loadRoute(yodasws.routes.get('404'));
 	};
+
+	// Declare 404 Page Not Found page
+	yodasws.page('404').setRoute({
+		template: 'pages/404.html',
+		route: '404',
+	});
 
 	// Declare each property/method only once
 	function ensure(obj, name, factory) {
+		if (obj instanceof Map) {
+			return obj.get(name) || (obj.set(name, factory()) && obj.get(name));
+		}
 		return obj[name] || (obj[name] = factory());
 	}
 
