@@ -1,0 +1,12 @@
+[y-page='pageCreation'] [itemtype~='http://schema.org/PublicationVolume'] {
+	counter-reset: sections;
+
+	> section {
+		counter-increment: sections;
+
+		summary::before {
+			display: inline;
+			content: counter(sections, upper-roman) '. ';
+		}
+	}
+}
