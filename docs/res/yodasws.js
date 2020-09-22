@@ -116,7 +116,6 @@
 						if (!name) {
 							name = `evt${eventCount++}`;
 						}
-						console.log(`I'm listening for ${type}.${name}`);
 						events[type] = events[type] || {};
 						events[type][name] = events[type][name] || []
 						events[type][name].push(cb);
@@ -141,7 +140,6 @@
 			fire: {
 				enumerable: true,
 				value(type, detail = undefined) {
-					console.log('firing', type);
 					eventTarget.dispatchEvent(new CustomEvent(type, {
 						detail,
 					}));
@@ -200,7 +198,6 @@
 
 	// Load Route Template
 	function loadRoute(route) {
-		console.log('Route:', route);
 		const xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === 4) {
