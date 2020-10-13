@@ -130,6 +130,12 @@ main {
 		}
 	}
 
+	aside {
+		margin: 1em 0 0 0.5em;
+		border-left: 2px solid lightgrey;
+		padding: 0.3em 0.5em;
+	}
+
 	@media #{$md} {
 		display: block;
 
