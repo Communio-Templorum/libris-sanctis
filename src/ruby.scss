@@ -62,8 +62,9 @@ ruby {
 		}
 	}
 
-	ruby ruby > rt {
+	ruby > rt {
 		display: inline;
 		vertical-align: super;
+		margin-left: 0.5em;
 	}
 }
