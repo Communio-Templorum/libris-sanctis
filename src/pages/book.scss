@@ -7,8 +7,8 @@
 		margin-bottom: 1em;
 	}
 
-	[itemtype="http://schema.org/Clip"] {
-		u[itemprop="author"] {
+	[itemtype='http://schema.org/Clip'] {
+		u[itemprop='author'] {
 			display: inline;
 		}
 	}
@@ -139,5 +139,27 @@
 	> small {
 		display: block;
 		text-align: center;
+	}
+
+	[itemprop='alternateName'] {
+		display: block;
+		text-align: center;
+		font-weight: bold;
+		margin: 0.3em 0 1.2em;
+
+		&::after,
+		&::before {
+			display: inline;
+			font-size: 1.1em;
+			font-weight: normal;
+		}
+
+		&::before {
+			content: '[ ';
+		}
+
+		&::after {
+			content: ' ]';
+		}
 	}
 }
