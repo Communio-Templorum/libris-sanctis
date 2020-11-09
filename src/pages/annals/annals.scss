@@ -11,11 +11,18 @@
 				font-size: 0.8em;
 			}
 		}
+		counter-reset: h4;
 	}
 
 	h4 {
 		margin-bottom: 1em;
 		text-indent: 3em;
+		counter-increment: h4;
+
+		&::before {
+			display: inline;
+			content: counter(h4, upper-roman) '. ';
+		}
 	}
 
 	table {
