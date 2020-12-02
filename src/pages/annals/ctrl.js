@@ -3,5 +3,4 @@ yodasws.page('annals').setRoute({
 	canonicalRoute: '/annals/',
 	route: '/annals/?',
 }).on('load', () => {
-	console.log('Page loaded!');
 });
