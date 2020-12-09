@@ -48,4 +48,9 @@
 			margin: 0;
 		}
 	}
+
+	ruby:lang(zh) > rtc:lang(en)::before {
+		display: inline;
+		content: "\a0— ";
+	}
 }
