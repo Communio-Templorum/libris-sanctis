@@ -1,4 +1,4 @@
-[y-page='pageCreation'] [itemtype~='http://schema.org/PublicationVolume'] {
+[y-page='pageCreation'] [itemtype~='https://schema.org/PublicationVolume'] {
 	counter-reset: sections;
 
 	> section {

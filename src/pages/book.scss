@@ -1,4 +1,4 @@
-[itemscope][itemtype~='http://schema.org/Book'] {
+[itemscope][itemtype~='https://schema.org/Book'] {
 	counter-reset: chapter;
 
 	u[itemprop='author'] {
@@ -7,7 +7,7 @@
 		margin-bottom: 1em;
 	}
 
-	[itemtype='http://schema.org/Clip'] {
+	[itemtype='https://schema.org/Clip'] {
 		u[itemprop='author'] {
 			display: inline;
 		}
@@ -19,7 +19,7 @@
 		font-size: smaller;
 	}
 
-	&[itemtype~='http://schema.org/PublicationVolume'] {
+	&[itemtype~='https://schema.org/PublicationVolume'] {
 		position: relative;
 
 		> nav > [rel='prev'] {
@@ -36,7 +36,7 @@
 	section {
 		margin-bottom: 1em;
 
-		section:not([itemtype='http://schema.org/Book'])::before {
+		section:not([itemtype='https://schema.org/Book'])::before {
 			display: block;
 			content: 'Chapter ' counter(chapter);
 			counter-increment: chapter;
