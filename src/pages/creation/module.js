@@ -1,4 +1,6 @@
 yodasws.page('pageCreation').setRoute({
+	title: 'History of the Creation of the World',
 	template: 'pages/creation/creation.html',
-	route: '/creation/',
+	canonicalRoute: '/creation/',
+	route: '/creation/?',
 });
