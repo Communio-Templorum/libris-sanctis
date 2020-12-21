@@ -9,4 +9,19 @@
 			content: counter(sections, upper-roman) '. ';
 		}
 	}
+
+	ruby:lang(en) > rtc:lang(en) {
+		font-size: 0.7em;
+		vertical-align: super;
+
+		&::before {
+			display: inline;
+			content: '(';
+		}
+
+		&::after {
+			display: inline;
+			content: ')';
+		}
+	}
 }

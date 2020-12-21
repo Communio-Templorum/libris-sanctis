@@ -52,7 +52,7 @@
 			cursor: pointer;
 		}
 
-		dl {
+		ol > dl {
 			margin: 0.5em 0.5em 0.5em 0;
 			padding: 0.5em;
 			border: 1px solid black;
@@ -90,6 +90,14 @@
 				content: '(Akkadian)';
 			}
 
+			dd:lang(egy)::after {
+				content: '(Egyptian)';
+			}
+
+			dd:lang(xhu)::after {
+				content: '(Hurrian)';
+			}
+
 			dd:lang(uga)::after {
 				content: '(Ugaritic)';
 			}
@@ -124,6 +132,24 @@
 
 			dd:lang(en)::after {
 				content: '(English)';
+			}
+		}
+
+		ol > aside {
+			margin: 1em 0;
+			border: solid lightgrey;
+			border-width: 1px 0 1px 2px;
+
+			@media #{$md} {
+				float: right;
+				clear: right;
+				margin: 0.5em -0.5em 0.5em 0.5em;
+				border: 1px solid black;
+				border-right: 0 none;
+			}
+
+			> dl {
+				margin: 0;
 			}
 		}
 	}
