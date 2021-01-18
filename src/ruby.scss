@@ -51,13 +51,16 @@ ruby {
 		}
 	}
 
+	&:lang(en) > rtc {
+		font-size: 0.8em;
+		color: grey;
+	}
+
 	ol > & {
 		display: list-item;
 
 		&:lang(en) > rtc {
 			display: block;
-			font-size: 0.8em;
-			color: grey;
 			margin-left: 2rem;
 		}
 	}
