@@ -127,6 +127,10 @@
 				content: '(Greek)';
 			}
 
+			dd:lang(arc)::after {
+				content: '(Aramaic)';
+			}
+
 			dd:lang(ar)::after {
 				content: '(Arabic)';
 			}
