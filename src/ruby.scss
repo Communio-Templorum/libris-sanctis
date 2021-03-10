@@ -59,6 +59,10 @@ ruby {
 	ol > & {
 		display: list-item;
 
+		&[value]::marker {
+			content: attr(value) '. ';
+		}
+
 		&:lang(en) > rtc {
 			display: block;
 			margin-left: 2rem;
