@@ -53,6 +53,25 @@
 			margin-bottom: 1em;
 		}
 
+		details > ruby {
+			display: list-item;
+			list-style: none;
+
+			@media #{$md} {
+				margin-left: 1em;
+			}
+
+			@media #{$lg} {
+				margin: 0 2em;
+			}
+
+			> rtc {
+				display: block;
+				margin-left: 3em;
+			}
+		}
+
+		details > dl,
 		ol > dl {
 			margin: 0.5em 0.5em 0.5em 0;
 			padding: 0.5em;
@@ -99,6 +118,10 @@
 				content: '(Hurrian)';
 			}
 
+			dd:lang(hit)::after {
+				content: '(Hittite)';
+			}
+
 			dd:lang(uga)::after {
 				content: '(Ugaritic)';
 			}
@@ -135,11 +158,12 @@
 				content: '(Arabic)';
 			}
 
-			dd:lang(en)::after {
+			dd[translate="no"]:lang(en)::after {
 				content: '(English)';
 			}
 		}
 
+		details > aside,
 		ol > aside {
 			margin: 1em 0;
 			border: solid lightgrey;
