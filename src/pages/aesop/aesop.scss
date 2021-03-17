@@ -1,0 +1,34 @@
+[y-page='pageAesop'] {
+	aside {
+		margin-top: 0;
+		margin-bottom: 1em;
+	}
+
+	counter-reset: chapter;
+
+	h3 {
+		margin-bottom: 1em;
+		text-align: center;
+
+		&::before {
+			counter-increment: chapter;
+			content: counter(chapter) ". ";
+		}
+
+		@media #{$lg} {
+			margin-left: 1em;
+			text-align: left;
+		}
+	}
+
+	p {
+		margin-top: 0;
+		margin-bottom: 0.5em;
+		text-indent: 1em;
+
+		@media #{$lg} {
+			margin: 1em 0;
+			text-indent: 0;
+		}
+	}
+}
