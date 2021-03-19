@@ -45,4 +45,14 @@
 			max-width: 90%;
 		}
 	}
+
+	section > img {
+		display: block;
+		max-width: 220px;
+		margin: 0 auto 1rem;
+
+		@media #{$lg} {
+			max-width: 300px;
+		}
+	}
 }
