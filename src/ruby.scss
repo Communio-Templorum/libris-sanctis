@@ -56,7 +56,8 @@ ruby {
 		color: grey;
 	}
 
-	ol > & {
+	ol > &,
+	p > & {
 		display: list-item;
 
 		&[value]::marker {

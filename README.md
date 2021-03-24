@@ -16,7 +16,7 @@
 * [The Iliad](https://www.sacred-texts.com/cla/homer/ili/index.htm)
 * [The Odyssey](https://www.sacred-texts.com/cla/homer/ody/index.htm)
 * [Theogony](https://www.sacred-texts.com/cla/hesiod/theogony.htm)
-* [The Aeneid](https://www.sacred-texts.com/cla/virgil/aen/index.htm)
+* [The Aeneid](https://www.gutenberg.org/files/22456/22456-h/22456-h.htm)
 * Metamorphoses
 	* [sacred-texts.com](https://www.sacred-texts.com/cla/ovid/meta/index.htm), in Latin and translated into English verse under the direction of Sir Samuel Garth by John Dryden, Alexander Pope, Joseph Addison, William Congreve and other eminent hands
 	* [archive.org](https://archive.org/details/rdg-ovid-metamorphoses-1-4/mode/2up), word-by-word translation by Rev. Dr. John Allen Giles
