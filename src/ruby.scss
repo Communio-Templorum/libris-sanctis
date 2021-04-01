@@ -56,14 +56,29 @@ ruby {
 		color: grey;
 	}
 
-	ol > &,
-	p > & {
+	&:not(:lang(en)) > rtc:lang(en) {
+		font-size: 0.8em;
+		color: grey;
+
+		&::before {
+			content: '(';
+		}
+
+		&::after {
+			content: ')';
+		}
+	}
+
+	ol > & {
 		display: list-item;
 
 		&[value]::marker {
 			content: attr(value) '. ';
 		}
+	}
 
+	ol > &,
+	p > & {
 		&:lang(en) > rtc {
 			display: block;
 			margin-left: 2rem;

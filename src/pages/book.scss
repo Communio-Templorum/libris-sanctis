@@ -217,4 +217,16 @@
 			content: ' ]';
 		}
 	}
+
+	h2 rtc[itemprop='alternateName'] {
+		font-size: 0.7em;
+
+		&::before {
+			content: '(';
+		}
+
+		&::after {
+			content: ')';
+		}
+	}
 }
