@@ -1,3 +1,5 @@
+$link-color: dodgerblue;
+
 [itemscope][itemtype~='https://schema.org/Book'] {
 	counter-reset: chapter;
 
@@ -227,6 +229,28 @@
 
 		&::after {
 			content: ')';
+		}
+	}
+
+	a[role="doc-backlink"],
+	a[role="doc-noteref"] {
+		color: $link-color;
+		cursor: pointer;
+	}
+
+	a[role="doc-noteref"] {
+		text-decoration: none;
+		vertical-align: super;
+		font-size: 0.7em;
+	}
+
+	footer[role="doc-endnotes"] ol {
+		list-style: none;
+		padding-left: 4em;
+		text-indent: -2em;
+
+		a[role="doc-backlink"] {
+			text-decoration: none;
 		}
 	}
 }

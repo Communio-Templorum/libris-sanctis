@@ -3,6 +3,7 @@ $sm: "(min-width: 0px)";
 $md: "(min-width: 760px)";
 $lg: "(min-width: 1000px)";
 $xl: "(min-width: 1200px)";
+$link-color: dodgerblue;
 
 $v-padding: 5px;
 $h-padding: $v-padding * 2.5;
@@ -52,7 +53,7 @@ h2 {
 
 a:link,
 a:visited {
-	color: dodgerblue;
+	color: $link-color;
 }
 
 @keyframes spinner {
