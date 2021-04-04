@@ -1,0 +1,23 @@
+[y-page='pageOrphicHymns'] {
+	aside {
+		margin-top: 1em;
+		margin-bottom: 1em;
+
+		> dl {
+			margin: 0;
+		}
+	}
+
+	counter-reset: chapter-orphic-hymns -1;
+
+	h3 {
+		&::before {
+			counter-increment: chapter-orphic-hymns;
+			content: counter(chapter-orphic-hymns) ". ";
+		}
+	}
+
+	h4 {
+		margin-top: 1rem;
+	}
+}

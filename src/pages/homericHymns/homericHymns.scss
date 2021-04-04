@@ -8,12 +8,12 @@
 		}
 	}
 
-	counter-reset: chapter;
+	counter-reset: chapter-homeric-hymns;
 
 	h3 {
 		&::before {
-			counter-increment: chapter;
-			content: counter(chapter) ". ";
+			counter-increment: chapter-homeric-hymns;
+			content: counter(chapter-homeric-hymns) ". ";
 		}
 	}
 
