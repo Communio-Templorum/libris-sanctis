@@ -42,14 +42,12 @@ yodasws.page('pageOrphicHymns').setRoute({
 
 	// Add a11y interactivity to links to footnotes
 	[...document.querySelectorAll('[role="doc-noteref"]')].forEach((link) => {
-		// link.setAttribute('tabindex', '0');
 		const id = regexId.exec(link.closest('[id]').getAttribute('id'))[0];
 		activateLink(link, `#note${id}[role="doc-backlink"], #note${id} [role="doc-backlink"]`);
 	});
 
 	// Add a11y interactivity to backlinks
 	[...document.querySelectorAll('[role="doc-backlink"]')].forEach((link) => {
-		// link.setAttribute('tabindex', '0');
 		const id = regexId.exec(link.closest('[id]').getAttribute('id'))[0];
 		activateLink(link, `#ref${id}[role="doc-noteref"], #ref${id} [role="doc-noteref"]`);
 	});
