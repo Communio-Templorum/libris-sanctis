@@ -1,3 +1,7 @@
+$sm: "screen";
+$md: "(min-width: 580px)";
+$lg: "(min-width: 1000px)";
+$xl: "(min-width: 1200px)";
 $link-color: dodgerblue;
 
 [itemscope][itemtype~='https://schema.org/Book'] {
@@ -15,10 +19,26 @@ $link-color: dodgerblue;
 		}
 	}
 
-	> nav {
+	> nav:not([role="doc-toc"]) {
 		margin: 1.1em 0;
 		text-align: center;
 		font-size: smaller;
+	}
+
+	> nav[role="doc-toc"] {
+		margin: 1rem 0 2rem;
+
+		@media #{$md} {
+			columns: 2;
+		}
+
+		@media #{$lg} {
+			columns: 3;
+		}
+
+		> ol {
+			margin: 0;
+		}
 	}
 
 	&[itemtype~='https://schema.org/PublicationVolume'] {
