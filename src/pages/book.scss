@@ -278,6 +278,10 @@ $link-color: dodgerblue;
 		padding-left: 4em;
 		text-indent: -2em;
 
+		p {
+			text-indent: 0;
+		}
+
 		a[role="doc-backlink"] {
 			text-decoration: none;
 		}
