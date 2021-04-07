@@ -8,6 +8,19 @@ body > header {
 
 	h1 {
 		margin: 0;
+
+		ruby:lang(en) {
+			> rp {
+				display: inline;
+				margin: 0 0.3em;
+				font-size: 0.8em;
+			}
+
+			> rtc {
+				font-size: 0.8em;
+				color: inherit;
+			}
+		}
 	}
 
 	h2 {
