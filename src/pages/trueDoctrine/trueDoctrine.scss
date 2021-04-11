@@ -1,3 +1,24 @@
 [y-page='pageTrueDoctrine'] {
-	/* SCSS Goes Here */
+	small + section {
+		margin-top: 1rem;
+	}
+
+	[itemscope][itemtype="https://schema.org/Collection"] > h3 {
+		margin-top: 1.3rem;
+		margin-bottom: 2rem;
+		font-size: 1em;
+		text-align: center;
+
+		@media #{$lg} {
+			margin-top: 2rem;
+		}
+
+		u[itemprop="author"] {
+			display: inline;
+		}
+	}
+
+	.revise {
+		color: red;
+	}
 }
