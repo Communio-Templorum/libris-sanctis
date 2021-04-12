@@ -1,11 +1,15 @@
 [y-page='pageTrueDoctrine'] {
+	h2 rtc {
+		display: block;
+	}
+
 	small + section {
 		margin-top: 1rem;
 	}
 
 	[itemscope][itemtype="https://schema.org/Collection"] > h3 {
 		margin-top: 1.3rem;
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
 		font-size: 1em;
 		text-align: center;
 
@@ -16,6 +20,10 @@
 		u[itemprop="author"] {
 			display: inline;
 		}
+	}
+
+	aside + section {
+		margin-top: 1.5rem;
 	}
 
 	.revise {
