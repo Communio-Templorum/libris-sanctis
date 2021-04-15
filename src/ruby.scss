@@ -19,12 +19,12 @@ ruby {
 
 		&::before {
 			display: inline;
-			content: ' (';
+			content: " (";
 		}
 
 		&::after {
 			display: inline;
-			content: ') ';
+			content: ") ";
 		}
 	}
 
@@ -37,12 +37,12 @@ ruby {
 
 			&::before {
 				display: inline;
-				content: ' (';
+				content: " (";
 			}
 
 			&::after {
 				display: inline;
-				content: ')';
+				content: ")";
 			}
 
 			> abbr {
@@ -61,11 +61,11 @@ ruby {
 		color: grey;
 
 		&::before {
-			content: '(';
+			content: "(";
 		}
 
 		&::after {
-			content: ')';
+			content: ")";
 		}
 	}
 
@@ -73,13 +73,13 @@ ruby {
 		display: list-item;
 
 		&[value]::marker {
-			content: attr(value) '. ';
+			content: attr(value) ". ";
 		}
 	}
 
 	ol > &,
 	p > & {
-		&:lang(en) > rtc {
+		&:lang(en) > rtc:not(:lang(en)) {
 			display: block;
 			margin-left: 2rem;
 		}
