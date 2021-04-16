@@ -17,6 +17,9 @@
 * [The Odyssey](https://www.sacred-texts.com/cla/homer/ody/index.htm)
 * [Theogony](https://www.sacred-texts.com/cla/hesiod/theogony.htm)
 * [The Aeneid](https://www.gutenberg.org/files/22456/22456-h/22456-h.htm)
+* [Homeric Hymns](https://www.perseus.tufts.edu/hopper/collection?collection=Perseus%3Acorpus%3Aperseus%2Cauthor%2CHomeric%20Hymns)
+* [Aesops's Fables](https://en.wikisource.org/wiki/Three_Hundred_%C3%86sop%27s_Fables)
+* [Orphic Hymns](https://www.hellenicgods.org/orphic-hymns---orphikoi-hymnoi)
 * Metamorphoses
 	* [sacred-texts.com](https://www.sacred-texts.com/cla/ovid/meta/index.htm), in Latin and translated into English verse under the direction of Sir Samuel Garth by John Dryden, Alexander Pope, Joseph Addison, William Congreve and other eminent hands
 	* [archive.org](https://archive.org/details/rdg-ovid-metamorphoses-1-4/mode/2up), word-by-word translation by Rev. Dr. John Allen Giles
