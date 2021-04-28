@@ -33,4 +33,22 @@
 	p {
 		text-align: justify;
 	}
+
+	blockquote {
+		padding: 1em 2em;
+		margin: 0;
+
+		> h3 {
+			margin: 1em 0;
+		}
+
+		> ruby {
+			display: block;
+
+			> rtc {
+				display: block;
+				margin-left: 1em;
+			}
+		}
+	}
 }
