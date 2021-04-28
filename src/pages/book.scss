@@ -13,7 +13,8 @@ $link-color: dodgerblue;
 		margin-bottom: 1em;
 	}
 
-	[itemtype='https://schema.org/Clip'] {
+	[itemtype='https://schema.org/Clip'],
+	footer {
 		u[itemprop='author'] {
 			display: inline;
 		}
