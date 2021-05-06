@@ -60,5 +60,14 @@
 				margin-left: 1em;
 			}
 		}
+
+		> cite {
+			display: block;
+
+			&::before {
+				display: inline;
+				content: '— ';
+			}
+		}
 	}
 }
