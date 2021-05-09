@@ -70,4 +70,14 @@
 			}
 		}
 	}
+
+	ruby:lang(en) > rtc:lang(en) {
+		&::before {
+			content: "(";
+		}
+
+		&::after {
+			content: ")";
+		}
+	}
 }
