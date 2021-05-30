@@ -32,6 +32,12 @@ ruby {
 		display: inline;
 		display: contents;
 
+		> rt[lang*="Latn"] {
+			vertical-align: baseline;
+			font-size: 0.8em;
+		}
+
+		> rt[lang*="Latn"],
 		> rtc:lang(en) {
 			display: inline;
 

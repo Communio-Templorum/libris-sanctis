@@ -4,18 +4,18 @@ $lg: "(min-width: 1000px)";
 $xl: "(min-width: 1200px)";
 $link-color: dodgerblue;
 
-[itemscope][itemtype~='https://schema.org/Book'] {
+[itemscope][itemtype~="https://schema.org/Book"] {
 	counter-reset: chapter;
 
-	u[itemprop='author'] {
+	u[itemprop="author"] {
 		display: block;
 		text-align: center;
 		margin-bottom: 1em;
 	}
 
-	[itemtype='https://schema.org/Clip'],
+	[itemtype="https://schema.org/Clip"],
 	footer {
-		u[itemprop='author'] {
+		u[itemprop="author"] {
 			display: inline;
 		}
 	}
@@ -42,15 +42,15 @@ $link-color: dodgerblue;
 		}
 	}
 
-	&[itemtype~='https://schema.org/PublicationVolume'] {
+	&[itemtype~="https://schema.org/PublicationVolume"] {
 		position: relative;
 
-		> nav > [rel='prev'] {
+		> nav > [rel="prev"] {
 			position: absolute;
 			left: 0;
 		}
 
-		> nav > [rel='next'] {
+		> nav > [rel="next"] {
 			position: absolute;
 			right: 0;
 		}
@@ -59,9 +59,9 @@ $link-color: dodgerblue;
 	section {
 		margin-bottom: 1em;
 
-		section:not([itemtype='https://schema.org/Book'])::before {
+		section:not([itemtype="https://schema.org/Book"])::before {
 			display: block;
-			content: 'Chapter ' counter(chapter);
+			content: "Chapter " counter(chapter);
 			counter-increment: chapter;
 			font-size: 1.05em;
 			font-weight: bold;
@@ -126,63 +126,63 @@ $link-color: dodgerblue;
 			}
 
 			dd:lang(sux)::after {
-				content: '(Sumerian)';
+				content: "(Sumerian)";
 			}
 
 			dd:lang(akk)::after {
-				content: '(Akkadian)';
+				content: "(Akkadian)";
 			}
 
 			dd:lang(egy)::after {
-				content: '(Egyptian)';
+				content: "(Egyptian)";
 			}
 
 			dd:lang(xhu)::after {
-				content: '(Hurrian)';
+				content: "(Hurrian)";
 			}
 
 			dd:lang(hit)::after {
-				content: '(Hittite)';
+				content: "(Hittite)";
 			}
 
 			dd:lang(uga)::after {
-				content: '(Ugaritic)';
+				content: "(Ugaritic)";
 			}
 
 			dd:lang(phn)::after {
-				content: '(Phoenician)';
+				content: "(Phoenician)";
 			}
 
 			dd:lang(syc)::after {
-				content: '(Classic Syrian)';
+				content: "(Classic Syrian)";
 			}
 
 			dd:lang(he)::after {
-				content: '(Hebrew)';
+				content: "(Hebrew)";
 			}
 
 			dd:lang(grc)::after {
-				content: '(Ancient Greek)';
+				content: "(Ancient Greek)";
 			}
 
 			dd:lang(la)::after {
-				content: '(Latin)';
+				content: "(Latin)";
 			}
 
 			dd:lang(el)::after {
-				content: '(Greek)';
+				content: "(Greek)";
 			}
 
 			dd:lang(arc)::after {
-				content: '(Aramaic)';
+				content: "(Aramaic)";
 			}
 
 			dd:lang(ar)::after {
-				content: '(Arabic)';
+				content: "(Arabic)";
 			}
 
 			dd[translate="no"]:lang(en)::after {
-				content: '(English)';
+				content: "(English)";
 			}
 		}
 
@@ -219,7 +219,7 @@ $link-color: dodgerblue;
 		text-align: center;
 	}
 
-	[itemprop='alternateName'] {
+	[itemprop="alternateName"] {
 		display: block;
 		text-align: center;
 		font-weight: bold;
@@ -233,23 +233,23 @@ $link-color: dodgerblue;
 		}
 
 		&::before {
-			content: '[ ';
+			content: "[ ";
 		}
 
 		&::after {
-			content: ' ]';
+			content: " ]";
 		}
 	}
 
-	h2 rtc[itemprop='alternateName'] {
+	h2 rtc[itemprop="alternateName"] {
 		font-size: 0.7em;
 
 		&::before {
-			content: '(';
+			content: "(";
 		}
 
 		&::after {
-			content: ')';
+			content: ")";
 		}
 	}
 
