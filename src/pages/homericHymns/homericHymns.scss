@@ -1,4 +1,6 @@
-[y-page='pageHomericHymns'] {
+[y-page="pageHomericHymns"] {
+	counter-reset: chapter-homeric-hymns;
+
 	aside {
 		margin-top: 1em;
 		margin-bottom: 1em;
@@ -7,8 +9,6 @@
 			margin: 0;
 		}
 	}
-
-	counter-reset: chapter-homeric-hymns;
 
 	h3 {
 		&::before {

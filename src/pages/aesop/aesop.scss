@@ -1,18 +1,18 @@
-[y-page='pageAesop'] {
+[y-page="pageAesop"] {
+	counter-reset: aesop-chapter;
+
 	aside {
 		margin-top: 0;
 		margin-bottom: 1em;
 	}
-
-	counter-reset: chapter;
 
 	h3 {
 		margin-bottom: 1em;
 		text-align: center;
 
 		&::before {
-			counter-increment: chapter;
-			content: counter(chapter) ". ";
+			counter-increment: aesop-chapter;
+			content: counter(aesop-chapter) ". ";
 		}
 
 		@media #{$lg} {

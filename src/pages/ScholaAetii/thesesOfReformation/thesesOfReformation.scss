@@ -1,4 +1,4 @@
-[y-page='pageThesesOfReformation'] {
+[y-page="pageThesesOfReformation"] {
 	h3 {
 		text-transform: uppercase;
 
@@ -6,7 +6,7 @@
 			counter-increment: heading 1;
 
 			&::before {
-				content: counter(heading) '. ';
+				content: counter(heading) ". ";
 			}
 		}
 	}

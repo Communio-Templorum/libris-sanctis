@@ -1,4 +1,4 @@
-[y-page='annals'] {
+[y-page="annals"] {
 	h3 {
 		margin-bottom: 1em;
 		counter-reset: h4;
@@ -21,7 +21,7 @@
 
 		&::before {
 			display: inline;
-			content: counter(h4, upper-roman) '. ';
+			content: counter(h4, upper-roman) ". ";
 		}
 	}
 

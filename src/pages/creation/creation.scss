@@ -1,4 +1,4 @@
-[y-page='pageCreation'] [itemtype~='https://schema.org/PublicationVolume'] {
+[y-page="pageCreation"] [itemtype~="https://schema.org/PublicationVolume"] {
 	counter-reset: sections;
 
 	> section {
@@ -6,7 +6,7 @@
 
 		summary::before {
 			display: inline;
-			content: counter(sections, upper-roman) '. ';
+			content: counter(sections, upper-roman) ". ";
 		}
 	}
 
@@ -16,12 +16,12 @@
 
 		&::before {
 			display: inline;
-			content: '(';
+			content: "(";
 		}
 
 		&::after {
 			display: inline;
-			content: ')';
+			content: ")";
 		}
 	}
 }

@@ -1,4 +1,6 @@
-[y-page='pageOrphicHymns'] {
+[y-page="pageOrphicHymns"] {
+	counter-reset: chapter-orphic-hymns -1;
+
 	aside {
 		margin-top: 1em;
 		margin-bottom: 1em;
@@ -7,8 +9,6 @@
 			margin: 0;
 		}
 	}
-
-	counter-reset: chapter-orphic-hymns -1;
 
 	h3 {
 		&::before {
