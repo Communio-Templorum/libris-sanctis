@@ -133,7 +133,7 @@ const options = {
 	lintES: {
 		parserOptions: {
 			sourceType: 'module',
-			ecmaVersion: 7,
+			ecmaVersion: 2021,
 		},
 		env: {
 			browser: true,
@@ -379,7 +379,7 @@ function runTasks(task) {
 
 	// Output Linting Results
 	[
-		'lintSass',
+		// 'lintSass',
 		'lintES'
 	].forEach((task) => {
 		if (tasks.includes(task)) {
@@ -414,14 +414,13 @@ function runTasks(task) {
 			'!**/min.css'
 		],
 		tasks: [
-			'lintSass',
+			// 'lintSass',
 			'sort',
 			'concat',
 			'compileSass',
 			'stripCssComments',
 			'rmLines',
 			'prefixCSS',
-			'connect.reload',
 		],
 		fileType: 'css',
 	},
@@ -457,7 +456,6 @@ function runTasks(task) {
 		tasks: [
 			'compileJS',
 			'rmLines',
-			'connect.reload',
 		],
 		fileType: 'js',
 	},
@@ -470,7 +468,6 @@ function runTasks(task) {
 		tasks: [
 			'ssi',
 			'compileHTML',
-			'connect.reload',
 		],
 		fileType: 'html',
 	},
@@ -478,7 +475,6 @@ function runTasks(task) {
 		name: 'transfer:assets',
 		src: [
 			'./src/**/*.jp{,e}g',
-			// './src/**/*.json',
 			'./src/**/*.gif',
 			'./src/**/*.png',
 			'./src/**/*.ttf',
@@ -491,7 +487,8 @@ function runTasks(task) {
 	});
 });
 
-gulp.task('lint:sass', () => {
+gulp.task('lint:sass', (done) => {
+	done(); return;
 	return gulp.src([
 		'src/**/*.{sa,sc,c}ss',
 		'!**/*.min.css',
@@ -542,20 +539,24 @@ gulp.task('compile:js', gulp.series(
 ));
 
 gulp.task('compile', gulp.parallel('compile:html', 'compile:js', 'compile:sass', 'transfer-files'));
+gulp.task('reload', (done) => {
+	gulp.src('docs/').pipe(plugins['connect.reload']());
+	done();
+});
 
 gulp.task('watch', (done) => {
 	gulp.watch('./src/**/*.{sa,sc,c}ss', {
 		usePolling: true,
-	}, gulp.series('compile:sass'));
-	gulp.watch('./lib/yodasws.js', {
+	}, gulp.series('compile:sass', 'reload'));
+	gulp.watch('./lib/*.js', {
 		usePolling: true,
-	}, gulp.series('transfer:res'));
+	}, gulp.series('transfer:res', 'reload'));
 	gulp.watch('./src/**/*.{js,json}', {
 		usePolling: true,
-	}, gulp.series('compile:js'));
+	}, gulp.series('compile:js', 'reload'));
 	gulp.watch('./src/**/*.html', {
 		usePolling: true,
-	}, gulp.series('compile:html'));
+	}, gulp.series('compile:html', 'reload'));
 	done();
 });
 
@@ -606,9 +607,6 @@ gulp.task('generate:page', gulp.series(
 		`git status`,
 	]),
 ));
-
-gulp.task('init:win', () => {
-});
 
 gulp.task('init', gulp.series(
 	plugins.cli([
@@ -753,6 +751,16 @@ body > nav:not([hidden]) {\n\tdisplay: flex;\n\tflex-flow: row wrap;\n\tjustify-
 			}
 			const str = `<h2>Home</h2>\n`;
 			return plugins.newFile(`home.html`, str, { src: true })
+				.pipe(gulp.dest(`./src/pages`));
+		},
+
+		(done) => {
+			if (fileExists.sync('src/pages/home.scss')) {
+				done();
+				return;
+			}
+			const str = `[y-page='home'] {\n\t/* SCSS Goes Here */\n}\n`;
+			return plugins.newFile(`home.scss`, str, { src: true })
 				.pipe(gulp.dest(`./src/pages`));
 		},
 
