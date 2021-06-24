@@ -49,9 +49,16 @@
 		}
 	}
 
-	ruby:lang(zh) > rtc:lang(en)::before {
-		display: inline;
-		content: "\a0— ";
+	ruby:lang(zh) > rtc:lang(en) {
+		&::before {
+			display: inline;
+			content: "\a0— ";
+		}
+
+		&::after {
+			display: none;
+			content: "";
+		}
 	}
 
 	ruby:lang(la) > rtc:lang(en) {
