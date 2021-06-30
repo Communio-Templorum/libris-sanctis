@@ -62,6 +62,7 @@ ruby {
 		color: grey;
 	}
 
+	summary & > rtc,
 	&:lang(en) > ruby > rtc,
 	&:not(:lang(en)) > rtc:lang(en) {
 		font-size: 0.8em;
