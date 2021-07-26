@@ -141,6 +141,10 @@ $link-color: dodgerblue;
 				content: "(Hurrian)";
 			}
 
+			dd:lang(xht)::after {
+				content: "(Hattic)";
+			}
+
 			dd:lang(hit)::after {
 				content: "(Hittite)";
 			}
