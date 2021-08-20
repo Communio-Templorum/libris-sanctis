@@ -64,7 +64,8 @@ ruby {
 
 	summary & > rtc,
 	&:lang(en) > ruby > rtc,
-	&:not(:lang(en)) > rtc:lang(en) {
+	&:not(:lang(en)) > rtc:lang(en),
+	&:not(:lang(en)) > rtc[lang*="Latn"] {
 		font-size: 0.8em;
 		color: grey;
 
