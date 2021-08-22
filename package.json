@@ -1,8 +1,8 @@
 {
-	"name": "libris-sanctis",
+	"name": "libri-sancti",
 	"private": true,
 	"version": "0.0.1",
-	"description": "Libris Sanctis of Templum Deam Luna",
+	"description": "Libri Sancti of Communio Templorum Romanorum",
 	"main": "gulpfile.js",
 	"repository": {
 		"type": "git",
