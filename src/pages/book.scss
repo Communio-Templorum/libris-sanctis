@@ -204,8 +204,15 @@ $link-color: dodgerblue;
 				border-right: 0 none;
 			}
 
-			> dl {
-				margin: 0;
+
+			> p:first-child,
+			> dl:first-child {
+				margin-top: 0;
+			}
+
+			> p:last-child,
+			> dl:last-child {
+				margin-bottom: 0;
 			}
 		}
 	}
