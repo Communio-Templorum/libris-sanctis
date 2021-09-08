@@ -9,4 +9,19 @@
 			content: counter(sections, upper-roman) ". ";
 		}
 	}
+
+	> form {
+		background: white;
+		border: solid black;
+		border-width: 1px 1px 0 0;
+		padding-right: 4px;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+
+		input,
+		label {
+			cursor: pointer;
+		}
+	}
 }
