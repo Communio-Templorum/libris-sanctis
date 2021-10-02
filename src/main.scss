@@ -19,6 +19,9 @@ html {
 }
 
 body {
+	display: flex;
+	flex-flow: column;
+
 	margin: 0 auto;
 	width: 100%;
 	max-width: 1200px;
@@ -32,9 +35,21 @@ body {
 
 	> header,
 	> nav,
-	> main,
-	> footer {
+	> main {
 		padding: $v-padding $h-padding;
+	}
+
+	> main,
+	#y-spinner {
+		flex-grow: 1;
+	}
+
+	> footer {
+		display: flex;
+		border-top: 10px solid gainsboro;
+		padding: 1em #{$h-padding};
+		flex-flow: row wrap;
+		justify-content: space-between;
 	}
 
 	#y-spinner {
