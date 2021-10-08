@@ -61,7 +61,6 @@ const fileExists = require('file-exists');
 const plugins = {
 	...require('gulp-load-plugins')({
 		rename: {
-			'yodasws.gulp-pattern-replace': 'replaceString',
 			'gulp-autoprefixer': 'prefixCSS',
 			'gulp-run-command': 'cli',
 			'gulp-sass-lint': 'lintSass',
@@ -137,15 +136,15 @@ const options = {
 		},
 		env: {
 			browser: true,
-			es6: true
+			es6: true,
 		},
 		rules: {
 
 'strict': [
-	2, 'global'
+	2, 'global',
 ],
 'indent': [
-	2, 'tab'
+	2, 'tab',
 ],
 'space-before-function-paren': 0,
 'comma-dangle': 0,
@@ -159,7 +158,7 @@ const options = {
 	},
 	lintSass: {
 		files: {
-			ignore: '**/*.min.css'
+			ignore: '**/*.min.css',
 		},
 		rules: {
 
@@ -405,13 +404,13 @@ function runTasks(task) {
 	return stream.pipe(gulp.dest(task.dest || options.dest));
 }
 
-;[
+[
 	{
 		name: 'compile:sass',
 		src: [
 			'src/**/*.{sa,sc,c}ss',
 			'!**/*.min.css',
-			'!**/min.css'
+			'!**/min.css',
 		],
 		tasks: [
 			// 'lintSass',
@@ -480,7 +479,7 @@ function runTasks(task) {
 			'./src/**/*.ttf',
 		],
 		tasks: [],
-	}
+	},
 ].forEach((task) => {
 	gulp.task(task.name, () => {
 		return runTasks(task);

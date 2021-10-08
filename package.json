@@ -1,18 +1,18 @@
 {
 	"name": "libri-sancti",
 	"private": true,
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Libri Sancti of Communio Templorum Romanorum",
 	"main": "gulpfile.js",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Templum-Deam-Luna/libris-sanctis.git"
+		"url": "git+https://github.com/Communio-Templorum/libris-sanctis.git"
 	},
-	"author": "Templum Deam Luna",
+	"author": "Communio Templorum Romanorum",
 	"bugs": {
-		"url": "https://github.com/Templum-Deam-Luna/libris-sanctis"
+		"url": "https://github.com/Communio-Templorum/libris-sanctis"
 	},
-	"homepage": "https://github.com/Templum-Deam-Luna/libris-sanctis#readme",
+	"homepage": "https://github.com/Communio-Templorum/libris-sanctis#readme",
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
 		"@babel/preset-env": "^7.5.5",
@@ -45,5 +45,8 @@
 	},
 	"directories": {
 		"lib": "lib"
+	},
+	"dependencies": {
+		"eslint": "^7.28.0"
 	}
 }
