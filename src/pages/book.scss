@@ -215,6 +215,17 @@ $link-color: dodgerblue;
 				margin-bottom: 0;
 			}
 		}
+
+		dl > dd > small {
+			display: block;
+			$indent: 1em;
+			text-indent: -#{$indent};
+			margin-left: #{$indent};
+			&::before {
+				display: inline;
+				content: '— ';
+			}
+		}
 	}
 
 	ol,
