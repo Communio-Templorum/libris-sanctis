@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<svg version="1.1" width="500" height="200" xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink">
+<circle cx="100" cy="100" r="90" fill="none" stroke="whitesmoke"/>
+<defs>
+	<g id="leaf">
+		<path d="M 0,0 a 50,20 -19 0 0 0,20 a 50,20 19 0 0 0,-20"/>
+	</g>
+	<g id="branch">
+		<path d="M50,25 a 90,90 0 0 0 40,164" fill="none" stroke="green"/>
+		<use x="0" y="0" xlink:href="#leaf" fill="green" transform="translate(50,25) rotate(50)"/>
+		<use x="0" y="0" xlink:href="#leaf" fill="green" transform="translate(50,40) rotate(60)"/>
+		<use x="0" y="0" xlink:href="#leaf" fill="green" transform="translate(30,27) rotate(16)"/>
+		<use x="0" y="0" xlink:href="#leaf" fill="green" transform="translate(15,40) rotate(-5)"/>
+		<use x="0" y="0" xlink:href="#leaf" fill="green" transform="translate(40,55) rotate(66)"/>
+	</g>
+</defs>
+<g transform="translate(50, 40)">
+	<path d="M 50,0 L 98,33 98,37 H 2 L 2,33 Z"/>
+	<path d="M 5,34 H 95 v 11 H 5 Z"/>
+	<path d="M 9,44 h 10 v 50 h -10 Z"/>
+	<path d="M 9,44 h 10 v 50 h -10 Z" transform="translate(22, 0)"/>
+	<path d="M 9,44 h 10 v 50 h -10 Z" transform="translate(49, 0)"/>
+	<path d="M 9,44 h 10 v 50 h -10 Z" transform="translate(71, 0)"/>
+	<path d="M 5,34 H 95 v 11 H 5 Z" transform="translate(0, 60)"/>
+</g>
+<use x="0" y="0" xlink:href="#branch"/>
+<use x="0" y="0" xlink:href="#branch" transform="translate(200,0) scale(-1,1)"/>
+<g transform="translate(210,60)" style="
+	font-family: Trebuchet MS;
+	font-size: 30px;
+	letter-spacing: 1px;
+">
+	<text>Communio</text>
+	<text dy="1.1em">Templorum</text>
+	<text dy="2.2em">Romanorum</text>
+</g>
+</svg>
