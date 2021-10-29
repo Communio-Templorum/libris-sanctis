@@ -47,6 +47,13 @@ const argv = require('yargs')
 			alias: 's',
 		},
 	})
+	.command('generate:section', 'Generate a new section', {
+		name: {
+			describe: 'Name for your new section',
+			required: true,
+			alias: 'n',
+		},
+	})
 	.command('lint', 'Lint all JavaScript and Sass/SCSS files')
 	.command('transfer-files', 'Transfer all static assets and resources to docs folder')
 	.command('watch', 'Watch files for changes to recompile')
@@ -516,7 +523,7 @@ gulp.task('transfer:fonts', () => gulp.src([
 );
 
 gulp.task('transfer:res', () => gulp.src([
-	'./lib/yodasws.js',
+	'./lib/*.js',
 ])
 	.pipe(gulp.dest(path.join(options.dest, 'res'))),
 );
@@ -607,6 +614,60 @@ gulp.task('generate:page', gulp.series(
 	]),
 ));
 
+gulp.task('generate:section', gulp.series(
+	(done) => {
+		argv.nameCC = camelCase(argv.name);
+		argv.module = camelCase('page', argv.nameCC);
+		done();
+	},
+	gulp.parallel(
+		() => {
+			const str = `[y-page='${argv.module}'] {\n\t/* SCSS Goes Here */\n}\n`;
+			return plugins.newFile(`${argv.nameCC}.scss`, str, { src: true })
+				.pipe(gulp.dest(`./src/pages/${argv.nameCC}`));
+		},
+		() => {
+			const str = `<h2>${argv.name}</h2>\n`;
+			return plugins.newFile(`${argv.nameCC}.html`, str, { src: true })
+				.pipe(gulp.dest(`./src/pages/${argv.nameCC}`));
+		},
+		() => {
+			const str = `yodasws.page('${argv.module}').setRoute({
+	title: '${argv.name}',
+	canonicalRoute: '/${argv.nameCC}/',
+	template(match, ...p) {
+		const path = p.join('/').replace(/\\/+/g, '/').replace(/^\\\/|\\\/$/g, '').split('/').filter(p => p != '');
+		if (path.length === 0) {
+			return 'pages/${argv.nameCC}/${argv.nameCC}.html';
+		}
+		return {
+			canonicalRoute: '/${argv.nameCC}/' + path.join('/') + '/',
+			template: 'pages/${argv.nameCC}/' + path.join('.') + '.html',
+		};
+	},
+	route: '/${argv.nameCC}(/.*)*',
+}).on('load', () => {
+	console.log('Page loaded!');
+});\n`
+			return plugins.newFile(`ctrl.js`, str, { src: true })
+				.pipe(gulp.dest(`./src/pages/${argv.nameCC}`));
+		},
+		() => {
+			// Add to app.json
+			const site = require('./src/app.json');
+			if (!site.pages) site.pages = [];
+			site.pages.push(`${argv.nameCC}`);
+			return plugins.newFile('app.json', JSON.stringify(site, null, '\t'), { src: true })
+				.pipe(gulp.dest(`./src`));
+		},
+	),
+	plugins.cli([
+		`git status`,
+	]),
+));
+
+// TODO: Let's move all of this into a separate file.
+// Here we only need to check that other file exists, run it, then maybe delete it
 gulp.task('init', gulp.series(
 	plugins.cli([
 		`mkdir -pv ./src`,
@@ -635,10 +696,10 @@ gulp.task('init', gulp.series(
 <!--#include file="includes/header/header.html" -->
 <main aria-live="polite"></main>
 <div id="y-spinner">
-	<div class="spinner"></div>
-	<div class="spinner-center"></div>
-	<div class="loading-text">Loading&hellip;</div>
-</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 120 120">
+	<path d="M 0-40 A 40 40 0 1 1 0 40" />
+	<path d="M 0-40 A 40 40 0 1 0 0 40" />
+</svg>Loading&hellip;</div>
 </body>
 </html>\n`;
 			return plugins.newFile(`index.html`, str, { src: true })
@@ -658,16 +719,14 @@ body {\n\tmargin: 0 auto;\n\twidth: 100%;\n\tmax-width: 1200px;\n\tmin-height: 1
 \t> * {\n\t\tpadding: 5px calc(5px * 2.5);\n\t}\n}\n
 h1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n\tmargin: 0;\n}\n
 a:link,\na:visited {\n\tcolor: dodgerblue;\n}\n
-@keyframes spinner {\n\t0% {\n\t\ttransform: rotate(0deg);\n\t}\n\t2% {\n\t\ttransform: rotate(0deg);\n\t}
-\t98% {\n\t\ttransform: rotate(calc(360deg * 5));\n\t}\n\t100% {\n\t\ttransform: rotate(calc(360deg * 5));\n\t}\n}\n
-#y-spinner {\n\tmargin: 0 auto;\n\ttext-align: center;\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 50%;\n\ttransform: translate(-50%, -50%);\n
-\t.spinner {\n\t\tdisplay: inline-block;\n\t\twidth: 100px;\n\t\theight: 100px;
-\t\tbackground: url('http://i.imgur.com/oSHLAzp.png') center center;\n\t\tbackground-size: contain;
-\t\ttransform-origin: 50% 50%;\n\t\tanimation: spinner 3s infinite alternate ease-in-out;\n\t\tcontent: '';\n\t}\n
-\t.spinner-center {\n\t\tdisplay: inline-block;\n\t\tposition: absolute;\n\t\tmargin-left: -100px;\n\t\twidth: 100px;\n\t\theight: 100px;
-\t\tbackground: url('http://i.imgur.com/u0BC2ZR.png') center center;\n\t\tbackground-size: contain;\n\t\tcontent: '';\n\t}\n
-\t.loading-text {\n\t\tposition: relative;\n\t\tz-index: 1;\n\t\tfont-size: 1.5rem;\n\t\tfont-family: "Comic Sans MS", cursive, sans-serif;
-\t\tmargin-left: 0.5em;\n\t}\n}\n`;
+#y-spinner {\n\tfont-size: 2rem;\n\ttext-align: center;\n
+\tsvg {\n\t\tdisplay: block;\n\t\tmargin: 20vh auto 0;\n\t\tmax-width: 150px;\n\t}\n
+\tsvg * {\n\t\tstroke-linejoin: round;\n\t\tstroke-linecap: round;\n\t}\n
+\tpath {\n\t\tfill: none;\n\t\tstroke: black;\n\t\tstroke-width: 10px;\n\t\topacity: 0.5;\n
+\t\t&:nth-of-type(odd) {\n\t\t\tanimation: 2s linear infinite rotate;\n\t\t\tstroke: red;\n\t\t}\n
+\t\t&:nth-of-type(even) {\n\t\t\tanimation: 3s linear infinite reverse rotate;\n\t\t\tstroke: gold;\n\t\t}\n\t}\n
+\t@keyframes rotate {\n\t\tfrom { transform: rotate(0deg); }\n\t\tto { transform: rotate(360deg); }\n\t}\n
+\t~ nav[y-component="topNav"] {\n\t\tdisplay: none;\n\t}\n}\n`;
 			return plugins.newFile(`main.scss`, str, { src: true })
 				.pipe(gulp.dest(`./src`));
 		},
