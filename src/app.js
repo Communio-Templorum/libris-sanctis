@@ -41,9 +41,13 @@ yodasws.on('page-loaded', () => {
 
 	// Add links to Chapters in Table of Contents
 	[...document.querySelectorAll('[itemtype="https://schema.org/Chapter"] [itemprop="name"]')].forEach((chapter) => {
+		const idElement = chapter.closest('[id]');
+		if (!(idElement instanceof Element)) {
+			return;
+		}
 		const link = document.createElement('a');
 		link.innerHTML = chapter.innerHTML;
-		const id = regexId.exec(chapter.closest('[id]').getAttribute('id'))[1];
+		const id = regexId.exec(idElement.getAttribute('id'))[1];
 		link.setAttribute('href', `#ch${id}`);
 		const li = document.createElement('li');
 		li.appendChild(link);
