@@ -628,7 +628,7 @@ gulp.task('generate:section', gulp.series(
 		},
 		() => {
 			const str = `<h2>${argv.name}</h2>\n`;
-			return plugins.newFile(`${argv.nameCC}.html`, str, { src: true })
+			return plugins.newFile('index.html', str, { src: true })
 				.pipe(gulp.dest(`./src/pages/${argv.nameCC}`));
 		},
 		() => {
@@ -638,7 +638,7 @@ gulp.task('generate:section', gulp.series(
 	template(match, ...p) {
 		const path = p.join('/').replace(/\\/+/g, '/').replace(/^\\\/|\\\/$/g, '').split('/').filter(p => p != '');
 		if (path.length === 0) {
-			return 'pages/${argv.nameCC}/${argv.nameCC}.html';
+			return 'pages/${argv.nameCC}/index.html';
 		}
 		return {
 			canonicalRoute: '/${argv.nameCC}/' + path.join('/') + '/',
