@@ -203,17 +203,6 @@ $link-color: dodgerblue;
 				border: 1px solid black;
 				border-right: 0 none;
 			}
-
-
-			> p:first-child,
-			> dl:first-child {
-				margin-top: 0;
-			}
-
-			> p:last-child,
-			> dl:last-child {
-				margin-bottom: 0;
-			}
 		}
 
 		dl > dd > small {

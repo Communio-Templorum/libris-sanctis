@@ -122,6 +122,16 @@ main {
 		+ h4 {
 			margin-top: 1em;
 		}
+
+		> p:first-child,
+		> dl:first-child {
+			margin-top: 0;
+		}
+
+		> p:last-child,
+		> dl:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	@media #{$sm} {
@@ -161,6 +171,10 @@ main {
 			> ol {
 				margin-bottom: 0;
 			}
+		}
+
+		p + aside {
+			margin-top: 0;
 		}
 	}
 }
