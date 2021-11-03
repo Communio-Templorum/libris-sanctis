@@ -1,4 +1,18 @@
 [y-page='pageTheReligionOfNuma'] {
+	display: flex;
+	flex-flow: column nowrap;
+
+	[itemtype~="https://schema.org/PublicationVolume"] {
+		display: flex;
+		flex-flow: column nowrap;
+		flex-grow: 1;
+
+		> section,
+		> ol {
+			flex-grow: 1;
+		}
+	}
+
 	h2[itemprop="name"] > span {
 		display: block;
 		font-size: 0.7em;
