@@ -7,6 +7,10 @@ $link-color: dodgerblue;
 [itemscope][itemtype~="https://schema.org/Book"] {
 	counter-reset: chapter;
 
+	h2[itemprop="name"] + u[itemprop="author"] {
+		margin-top: 0.4rem;
+	}
+
 	u[itemprop="author"] {
 		display: block;
 		text-align: center;
