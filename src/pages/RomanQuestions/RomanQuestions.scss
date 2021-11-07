@@ -1,0 +1,9 @@
+[y-page="pageRomanQuestions"] {
+	counter-reset: chapter;
+
+	h3[itemprop="name"]::before {
+		display: inline;
+		content: counter(chapter) ". ";
+		counter-increment: chapter;
+	}
+}
