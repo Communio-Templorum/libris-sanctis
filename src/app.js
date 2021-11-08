@@ -38,7 +38,7 @@ function activateLink(link, elemSelector) {
 
 yodasws.on('page-loaded', () => {
 	const olToc = document.querySelector('[role="doc-toc"] [role="directory"]');
-	const regexId = /^(?:ch|note|ref)((?:-\d+)+)/;
+	const regexId = /^(?:ch|note|ref)((?:-[a-z0-9]+)+)/;
 
 	// Add links to Chapters in Table of Contents
 	// Requires the Chapter or its Name be given [id="ch-N"] attribute
@@ -49,6 +49,7 @@ yodasws.on('page-loaded', () => {
 		}
 		const link = document.createElement('a');
 		link.innerHTML = chapter.innerHTML;
+		[...link.querySelectorAll('a')].forEach(a => a.remove());
 		const id = regexId.exec(idElement.getAttribute('id'))[1];
 		link.setAttribute('href', `#ch${id}`);
 		const li = document.createElement('li');
