@@ -1,4 +1,4 @@
-[y-page='pageTheReligionOfNuma'] {
+[y-page="pageTheReligionOfNuma"] {
 	display: flex;
 	flex-flow: column nowrap;
 
@@ -18,5 +18,23 @@
 		font-size: 0.7em;
 		margin: 0.6em 0;
 		text-align: center;
+	}
+
+	p > ruby:lang(en) > rtc:not(:lang(en)) {
+		display: inline;
+		margin-left: 0;
+		color: inherit;
+		font-size: inherit;
+		font-style: italic;
+
+		&::before {
+			content: "(";
+			font-style: normal;
+		}
+
+		&::after {
+			content: ")";
+			font-style: normal;
+		}
 	}
 }
