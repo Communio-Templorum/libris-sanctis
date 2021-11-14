@@ -307,4 +307,19 @@ $link-color: dodgerblue;
 			text-decoration: none;
 		}
 	}
+
+	aside > blockquote:only-child {
+		margin: 0.2em 2em 0.2em 0.5em;
+		text-align: justify;
+
+		> cite {
+			display: block;
+			margin-left: 1em;
+			margin-top: 0.5em;
+
+			&::before {
+				content: "—";
+			}
+		}
+	}
 }
