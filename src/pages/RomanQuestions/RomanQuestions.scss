@@ -6,4 +6,22 @@
 		content: counter(chapter) ". ";
 		counter-increment: chapter;
 	}
+
+	p > ruby:lang(en) > rtc:not(:lang(en)) {
+		display: inline;
+		margin-left: 0;
+		color: inherit;
+		font-size: inherit;
+		font-style: italic;
+
+		&::before {
+			content: "(";
+			font-style: normal;
+		}
+
+		&::after {
+			content: ")";
+			font-style: normal;
+		}
+	}
 }
