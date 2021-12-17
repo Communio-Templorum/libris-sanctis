@@ -20,6 +20,10 @@
 		text-align: center;
 	}
 
+	p {
+		line-height: 1.5;
+	}
+
 	p > ruby:lang(en) > rtc:not(:lang(en)) {
 		display: inline;
 		margin-left: 0;
