@@ -10,6 +10,35 @@
 		}
 	}
 
+	div.columns {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+
+		> div {
+			min-width: 300px;
+		}
+
+		> div:not(:last-of-type) {
+			flex-grow: 1;
+		}
+
+		> div:last-of-type {
+			justify-self: flex-start;
+		}
+
+		@for $i from 2 through 5 {
+			> div:first-of-type:nth-last-of-type(#{$i}),
+			> div:first-of-type:nth-last-of-type(#{$i}) ~ div {
+				flex-basis: 100% / $i;
+			}
+
+			> div:first-of-type:nth-last-of-type(#{$i}) ~ div:last-of-type {
+				max-width: 100% / $i;
+			}
+		}
+	}
+
 	> form {
 		background: white;
 		border: solid black;
