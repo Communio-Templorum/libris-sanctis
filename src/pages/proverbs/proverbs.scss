@@ -1,3 +1,11 @@
 [y-page="pageProverbs"] {
-	/* SCSS Goes Here */
+	li > cite {
+		display: block;
+		margin-left: 1rem;
+
+		&::before {
+			display: inline;
+			content: "—";
+		}
+	}
 }
