@@ -26,7 +26,15 @@ const argv = require('yargs')
 			alias: 'n',
 		},
 	})
-	.command(['serve', '*'], 'Compile files and start server', {
+	.command('*', 'Compile files, run the server, and watch for changes to files', {
+		port: {
+			describe: 'The server port to listen to',
+			type: 'number',
+			default: 3000,
+			alias: 'p',
+		},
+	})
+	.command(['serve'], 'Run server', {
 		port: {
 			describe: 'The server port to listen to',
 			type: 'number',
@@ -416,6 +424,8 @@ function runTasks(task) {
 		name: 'compile:sass',
 		src: [
 			'src/**/*.{sa,sc,c}ss',
+			'!src/scss/*.{sa,sc,c}ss',
+			'!src/txt/**/*.{sa,sc,c}ss',
 			'!**/*.min.css',
 			'!**/min.css',
 		],
@@ -481,6 +491,7 @@ function runTasks(task) {
 		name: 'transfer:assets',
 		src: [
 			'./src/**/*.jp{,e}g',
+			// './src/**/*.json',
 			'./src/**/*.gif',
 			'./src/**/*.png',
 			'./src/**/*.ttf',
