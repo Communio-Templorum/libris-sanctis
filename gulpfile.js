@@ -101,11 +101,7 @@ plugins['connect.reload'] = plugins.connect.reload;
 // more options at https://github.com/postcss/autoprefixer#options
 const browsers = [
 	// browser strings detailed at https://github.com/ai/browserslist#queries
-	'last 2 Firefox versions',
-	'last 2 Chrome versions',
-	'Safari >= 10',
-	'ie_mob >= 11',
-	'ie >= 11',
+	'defaults',
 ];
 
 const options = {
