@@ -1,7 +1,6 @@
 yodasws.page('odyssey').setRoute({
 	title: 'The Odyssey, table of contents',
 	canonicalRoute: '/odyssey/',
-	route: '/odyssey/?',
 	template(match, ...p) {
 		const path = p.join('/').split('/').filter(p => p != '');
 		if (path.length === 0) {
