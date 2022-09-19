@@ -322,4 +322,14 @@ $link-color: dodgerblue;
 			}
 		}
 	}
+
+
+	@media #{$md} {
+		main & h3 + aside {
+			float: right;
+			clear: right;
+			max-width: 310px;
+			margin-left: 0.5em;
+		}
+	}
 }
