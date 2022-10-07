@@ -49,7 +49,8 @@ yodasws.on('page-loaded', () => {
 		}
 		const link = document.createElement('a');
 		link.innerHTML = chapter.innerHTML;
-		[...link.querySelectorAll('a')].forEach(a => a.remove());
+		// Remove HTML from titles for use in ToC links
+		[...link.querySelectorAll('a, rtc')].forEach(a => a.remove());
 		const id = regexId.exec(idElement.getAttribute('id'))[1];
 		link.setAttribute('href', `#ch${id}`);
 		const li = document.createElement('li');

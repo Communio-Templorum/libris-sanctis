@@ -7,13 +7,21 @@
 		counter-increment: chapter;
 	}
 
+	p > ruby:lang(en) > rtc:not(:lang(en)),
+	p > ruby:not(:lang(en)) {
+		font-style: italic;
+	}
+
+	p > ruby:not(:lang(en)) > rtc:lang(en) {
+		font-style: normal;
+	}
+
 	p > ruby:not(:lang(en)) > rtc:lang(en),
 	p > ruby:lang(en) > rtc:not(:lang(en)) {
 		display: inline;
 		margin-left: 0;
 		color: inherit;
 		font-size: inherit;
-		font-style: italic;
 
 		&::before {
 			content: "(";
