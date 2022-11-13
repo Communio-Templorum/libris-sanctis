@@ -41,4 +41,12 @@
 			font-style: normal;
 		}
 	}
+
+	@media #{$lg} {
+		aside {
+			float: right;
+			margin-left: 1em;
+			margin-bottom: 1em;
+		}
+	}
 }
