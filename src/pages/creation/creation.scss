@@ -30,11 +30,11 @@
 		@for $i from 2 through 5 {
 			> div:first-of-type:nth-last-of-type(#{$i}),
 			> div:first-of-type:nth-last-of-type(#{$i}) ~ div {
-				flex-basis: 100% / $i;
+				flex-basis: calc(100% / $i);
 			}
 
 			> div:first-of-type:nth-last-of-type(#{$i}) ~ div:last-of-type {
-				max-width: 100% / $i;
+				max-width: calc(100% / $i);
 			}
 		}
 	}
