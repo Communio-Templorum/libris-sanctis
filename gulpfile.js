@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const fs = require('fs');
+import fs from 'fs';
 const packageJson = JSON.parse(fs.readFileSync('./package.json'));
 
 function camelCase() {
@@ -17,7 +17,8 @@ function camelCase() {
 	}).join('');
 }
 
-const argv = require('yargs')
+import yargs from 'yargs';
+const argv = yargs()
 	.usage("\n\x1b[1mUsage:\x1b[0m gulp \x1b[36m<command>\x1b[0m \x1b[34m[options]\x1b[0m")
 	.command('init', 'Initialize app', {
 		name: {
@@ -69,33 +70,37 @@ const argv = require('yargs')
 	.epilog(' ©2017–2025 Samuel B Grundman')
 	.argv;
 
-const gulp = require('gulp');
-const path = require('path');
-const fileExists = require('file-exists');
+import gulp from 'gulp';
+import path from 'path';
+import fileExists from 'file-exists';
 
-const plugins = {
-	...require('gulp-load-plugins')({
-		rename: {
-			'gulp-autoprefixer': 'prefixCSS',
-			'gulp-run-command': 'cli',
-			'gulp-sass-lint': 'lintSass',
-			'gulp-htmlmin': 'compileHTML',
-			'gulp-eslint': 'lintES',
-			'gulp-babel': 'compileJS',
-			'gulp-order': 'sort',
-			'gulp-file': 'newFile',
+import * as sass from 'sass';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const plugins = require('gulp-load-plugins')({
+	rename: {
+		'gulp-autoprefixer': 'prefixCSS',
+		'gulp-run-command': 'cli',
+		'gulp-eslint-new': 'lintES',
+		'gulp-sass-lint': 'lintSass',
+		'gulp-htmlmin': 'compileHTML',
+		'gulp-babel': 'compileJS',
+		'gulp-order': 'sort',
+		'gulp-file': 'newFile',
+		'gulp-sass': 'compileSass',
+	},
+	postRequireTransforms: {
+		cli(gulpRunCommand) {
+			return gulpRunCommand.default;
 		},
-		postRequireTransforms: {
-			cli(cli) {
-				return cli.default;
-			},
+		compileSass(gulpSass) {
+			return gulpSass(sass);
 		},
-	}),
-	replaceString: require('@yodasws/gulp-pattern-replace'),
-	compileSass: require('gulp-sass')(require('sass')),
-	webpack: require('webpack-stream'),
-	named: require('vinyl-named'),
-};
+	},
+});
+plugins.replaceString = require('@yodasws/gulp-pattern-replace');
+plugins.webpack = require('webpack-stream');
+plugins.named = require('vinyl-named');
 plugins['connect.reload'] = plugins.connect.reload;
 
 // more options at https://github.com/postcss/autoprefixer#options
@@ -117,7 +122,7 @@ const options = {
 					targets: browsers,
 				},
 			],
-		]
+		],
 	},
 	compileSass: {
 		style: 'compressed',
@@ -140,15 +145,14 @@ const options = {
 		useShortDoctype: true,
 	},
 	lintES: {
-		parserOptions: {
-			sourceType: 'module',
-			ecmaVersion: 2021,
-		},
-		env: {
-			browser: true,
-			es6: true,
-		},
-		rules: {
+		overrideConfig: {
+			languageOptions: {
+				parserOptions: {
+					sourceType: 'module',
+					ecmaVersion: 2021,
+				},
+			},
+			rules: {
 
 'strict': [
 	2, 'global',
@@ -164,6 +168,7 @@ const options = {
 'no-var': 2,
 'semi': 0,
 
+			},
 		},
 	},
 	lintSass: {
@@ -375,6 +380,19 @@ const options = {
 		output: {
 			filename: '[name].js',
 		},
+		module: {
+			rules: [
+				{
+					test: /\.mjs$/,
+					use: {
+						loader: 'babel-loader',
+						options: {
+							presets: ['@babel/preset-env'],
+						},
+					},
+				},
+			],
+		},
 	},
 	ssi: {
 		root: 'src',
@@ -423,7 +441,7 @@ function runTasks(task) {
 			'!**/min.css',
 		],
 		tasks: [
-			// 'lintSass',
+			'lintSass',
 			'sort',
 			'concat',
 			'compileSass',
@@ -496,8 +514,7 @@ function runTasks(task) {
 	});
 });
 
-gulp.task('lint:sass', (done) => {
-	done(); return;
+export function lintSass() {
 	return gulp.src([
 		'src/**/*.{sa,sc,c}ss',
 		'!**/*.min.css',
@@ -505,9 +522,9 @@ gulp.task('lint:sass', (done) => {
 	])
 		.pipe(plugins.lintSass(options.lintSass))
 		.pipe(plugins.lintSass.format());
-});
+};
 
-gulp.task('lint:js', () => {
+export function lintJs() {
 	return gulp.src([
 		'src/**/*.js',
 		'!**/*.min.js',
@@ -515,9 +532,9 @@ gulp.task('lint:js', () => {
 	])
 		.pipe(plugins.lintES(options.lintES))
 		.pipe(plugins.lintES.format());
-});
+};
 
-gulp.task('lint', gulp.parallel('lint:sass', 'lint:js'));
+export const lint = gulp.parallel(lintSass, lintJs);
 
 gulp.task('transfer:fonts', () => gulp.src([
 	'./node_modules/font-awesome/fonts/fontawesome-webfont.*',
@@ -673,7 +690,6 @@ gulp.task('compile:scss', gulp.series('compile:sass'));
 gulp.task('compile:css', gulp.series('compile:sass'));
 
 gulp.task('default', gulp.series(
-	'lint',
 	'compile',
 	gulp.parallel(
 		'serve',
