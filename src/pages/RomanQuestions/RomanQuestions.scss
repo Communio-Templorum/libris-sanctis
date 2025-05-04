@@ -7,6 +7,10 @@
 		counter-increment: chapter;
 	}
 
+	p {
+		text-indent: 0.5cm;
+	}
+
 	p > ruby:lang(en) > rtc:not(:lang(en)),
 	p > ruby:not(:lang(en)) {
 		font-style: italic;

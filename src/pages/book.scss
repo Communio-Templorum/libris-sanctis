@@ -214,9 +214,10 @@ $link-color: dodgerblue;
 			$indent: 1em;
 			text-indent: -#{$indent};
 			margin-left: #{$indent};
+
 			&::before {
 				display: inline;
-				content: '— ';
+				content: "— ";
 			}
 		}
 	}
@@ -331,5 +332,9 @@ $link-color: dodgerblue;
 			max-width: 310px;
 			margin-left: 0.5em;
 		}
+	}
+
+	div.toc-return {
+		text-align: right;
 	}
 }
