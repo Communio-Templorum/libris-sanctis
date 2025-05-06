@@ -24,6 +24,7 @@
 	* [sacred-texts.com](https://www.sacred-texts.com/cla/ovid/meta/index.htm), in Latin and translated into English verse under the direction of Sir Samuel Garth by John Dryden, Alexander Pope, Joseph Addison, William Congreve and other eminent hands
 	* [archive.org](https://archive.org/details/rdg-ovid-metamorphoses-1-4/mode/2up), word-by-word translation by Rev. Dr. John Allen Giles
 	* [theoi.com](https://www.theoi.com/Text/OvidMetamorphoses1.html), translated by Bookes More, 1922.
+* [The Roman Questions](https://sacred-texts.com/cla/plu/rgq/), translated by Frank Cole Babbitt, 1938
 
 ### Copyrighted Works
 
