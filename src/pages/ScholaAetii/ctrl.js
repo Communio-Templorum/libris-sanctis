@@ -4,3 +4,17 @@ yodasws.page('ScholaAetii').setRoute({
 	canonicalRoute: '/ScholaAetii/',
 	route: '/ScholaAetii/?',
 });
+
+yodasws.page('ScholaAetii/epistleRomans').setRoute({
+	title: 'First Epistle to the Romans',
+	template: 'pages/ScholaAetii/epistleRomans.html',
+	canonicalRoute: '/ScholaAetii/epistleRomans/',
+	route: '/ScholaAetii/epistleRomans/?',
+});
+
+yodasws.page('ScholaAetii/thesesOfReformation').setRoute({
+	title: 'Theses of the Reformed Roman Religion',
+	template: 'pages/ScholaAetii/thesesOfReformation.html',
+	canonicalRoute: '/ScholaAetii/thesesOfReformation/',
+	route: '/ScholaAetii/thesesOfReformation/?',
+});
