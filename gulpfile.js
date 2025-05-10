@@ -539,6 +539,7 @@ gulp.task('bundle:js', gulp.series(
 ));
 
 gulp.task('compile:js', gulp.series(
+	lintJs,
 	'bundle:js',
 	'minify:js',
 ));
