@@ -51,17 +51,19 @@ $link-color: dodgerblue;
 		}
 	}
 
-	&[itemtype~="https://schema.org/PublicationVolume"] {
-		position: relative;
+	@media #{$md} {
+		&[itemtype~="https://schema.org/PublicationVolume"] {
+			position: relative;
 
-		> nav > [rel="prev"] {
-			position: absolute;
-			left: 0;
-		}
+			> nav > [rel="prev"] {
+				position: absolute;
+				left: 0;
+			}
 
-		> nav > [rel="next"] {
-			position: absolute;
-			right: 0;
+			> nav > [rel="next"] {
+				position: absolute;
+				right: 0;
+			}
 		}
 	}
 
