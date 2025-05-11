@@ -7,11 +7,16 @@ $link-color: dodgerblue;
 [itemscope][itemtype~="https://schema.org/Book"] {
 	counter-reset: chapter;
 
-	h2[itemprop="name"] + u[itemprop="author"] {
+	h2[itemprop="name"] + [itemprop="author"] {
 		margin-top: 0.4rem;
 	}
 
-	u[itemprop="author"] {
+	span[itemprop="translator"],
+	span[itemprop="author"] {
+		text-decoration: underline;
+	}
+
+	[itemprop="author"] {
 		display: block;
 		text-align: center;
 		margin-bottom: 1em;
@@ -19,7 +24,7 @@ $link-color: dodgerblue;
 
 	[itemtype="https://schema.org/Clip"],
 	footer {
-		u[itemprop="author"] {
+		[itemprop="author"] {
 			display: inline;
 		}
 	}
